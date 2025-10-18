@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+:root {
+    --fleet-blue: #1563a1;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default margin */
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+    list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+/* Set core body defaults */
+body {
+    background: #f9f9fb;
+    font-family: "Inter", sans-serif;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+    max-width: 100%;
+    display: block;
+}
+
+#header {
+    background-color: #ffffff;
+    padding: 1rem;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-menu {
+    display: flex;
+    gap: 1rem;
+    list-style-type: none;
+}
+
+.header-menu a {
+    text-decoration: none;
+    font-size: 0.875rem;
+    color: #000000;
+}
+
+.header-menu a:hover {
+    color: var(--fleet-blue);
+}
+
+#footer {
+    background: #ffffff;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 8px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    margin-bottom: 16px;
+    margin-top: 8px;
+}
+
+#footer p {
+    font-weight: 500;
+}
+
+.footer-socials ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.footer-socials li {
+    border-right: 2px solid var(--fleet-black);
+}
+
+.footer-socials a {
+    color: var(--fleet-black);
+    font-size: 1.25rem;
+    text-decoration: none;
+    padding: 5px 12px;
+    width: 100%;
+    display: block;
+}
+
+.footer-socials i:hover {
+    transition: 250ms all;
+    color: var(--fleet-blue);
+}
+
+.footer-socials li a:hover {
+    transition: 250ms all;
+    color: var(--fleet-blue);
+}
+
+.footer-end {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-end a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 0.875rem;
+}
+
+.footer-end a:hover {
+    color: var(--fleet-blue);
+    transition: 250ms all;
+}
+
+@media screen and (max-width: 1200px) {
+    .home-hero-wrapper {
+        display: unset;
+    }
+    .home-hero-categories-block {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navigation-menu-mobile,
+    .hamburger-menu-block {
+        display: block;
+    }
+    #header {
+        display: none;
+    }
+    .haiku-main-section {
+        padding-top: 8px;
+    }
+    .food-menu-wrapper {
+        display: unset;
+    }
+    .menu-block {
+        padding: 1.5rem 0 1.5rem 0;
+    }
+}
+
+@media screen and (max-width: 705px) {
+    #footer {
+        flex-direction: row;
+    }
+    .footer-end {
+        display: unset;
+    }
+    .footer-end a,
+    .footer-end p {
+        font-size: 0.75rem;
+    }
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}

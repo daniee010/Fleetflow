@@ -1,0 +1,104 @@
+@extends('frontend.layout.master')
+
+@section('title', 'Register')
+
+@section('content')
+    <section class="min-h-screen flex items-center justify-center bg-[#FDFDFC] dark:bg-[#0a0a0a] px-6 py-16">
+        <div class="bg-white dark:bg-[#161615] shadow-lg rounded-lg p-8 w-full max-w-md">
+            {{-- Header --}}
+            <h1 class="text-3xl font-bold text-center text-[#f53003] mb-6">Create Your Account</h1>
+            <p class="text-center text-gray-600 dark:text-[#A1A09A] mb-8">
+                Join FleetFlow to manage your fleet, drivers, and finances efficiently.
+            </p>
+
+            {{-- Registration Form --}}
+            <form action="{{ route('register') }}" method="POST" class="space-y-5">
+                @csrf
+
+                {{-- Name --}}
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        placeholder="Enter your name"
+                        value="{{ old('name') }}"
+                        class="w-full border border-gray-300 dark:border-[#3E3E3A] rounded-md px-4 py-2 focus:ring-2 focus:ring-[#f53003] focus:outline-none dark:bg-[#0a0a0a] dark:text-white"
+                        required
+                    >
+                    @error('name')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- Email --}}
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email Address</label>
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        value="{{ old('email') }}"
+                        class="w-full border border-gray-300 dark:border-[#3E3E3A] rounded-md px-4 py-2 focus:ring-2 focus:ring-[#f53003] focus:outline-none dark:bg-[#0a0a0a] dark:text-white"
+                        required
+                    >
+                    @error('email')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- Password --}}
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Create a password"
+                        class="w-full border border-gray-300 dark:border-[#3E3E3A] rounded-md px-4 py-2 focus:ring-2 focus:ring-[#f53003] focus:outline-none dark:bg-[#0a0a0a] dark:text-white"
+                        required
+                    >
+                    @error('password')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                {{-- Confirm Password --}}
+                <div>
+                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Confirm Password</label>
+                    <input
+                        type="password"
+                        name="password_confirmation"
+                        id="password_confirmation"
+                        placeholder="Re-enter your password"
+                        class="w-full border border-gray-300 dark:border-[#3E3E3A] rounded-md px-4 py-2 focus:ring-2 focus:ring-[#f53003] focus:outline-none dark:bg-[#0a0a0a] dark:text-white"
+                        required
+                    >
+                </div>
+
+                {{-- Submit Button --}}
+                <button
+                    type="submit"
+                    class="w-full bg-[#f53003] text-white font-semibold py-2 rounded-md hover:bg-black transition"
+                >
+                    Register
+                </button>
+            </form>
+
+            {{-- Divider --}}
+            <div class="flex items-center justify-center my-6">
+                <div class="h-px bg-gray-300 dark:bg-[#3E3E3A] w-1/4"></div>
+                <span class="px-3 text-sm text-gray-500 dark:text-gray-400">or</span>
+                <div class="h-px bg-gray-300 dark:bg-[#3E3E3A] w-1/4"></div>
+            </div>
+
+            {{-- Login Redirect --}}
+            <p class="text-center text-sm text-gray-600 dark:text-gray-400">
+                Already have an account?
+                <a href="{{ route('login') }}" class="text-[#f53003] font-semibold hover:underline">Login here</a>
+            </p>
+        </div>
+    </section>
+@endsection

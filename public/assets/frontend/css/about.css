@@ -1,0 +1,40 @@
+.about-heading-block {
+    margin: 1rem 0;
+    display: inline-block;
+    font-size: 1.25rem;
+    color: #000000;
+    text-decoration: underline;
+}
+
+.about-heading-block p {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.about-content-block {
+    margin-bottom: 1rem;
+}
+
+.about-content-block p {
+    font-size: 0.875rem;
+}
+
+.about-faq-block {
+    margin: 1rem 0;
+    display: inline-block;
+    font-size: 1.25rem;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.about-faq {
+    margin-bottom: 1rem;
+}
+
+details summary {
+    font-size: 0.875rem;
+}
+
+details summary p {
+    font-size: 0.875rem;
+}
