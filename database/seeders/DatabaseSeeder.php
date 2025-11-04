@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
                 return [
                     'customer_id' => Arr::random($customerIds),
                     'vehicle_id'  => Arr::random($vehicleIds),
-                    'status'      => Arr::random(['booked','active','completed','cancelled']),
+                    'status'      => Arr::random(['pending','approved','completed','cancelled']),
                     // use total_cost (and do NOT set total_price)
                     'total_cost'  => $days * $rate,
                 ];

@@ -28,7 +28,7 @@ class MaintenanceFactory extends Factory
             'vehicle_id'   => Vehicle::query()->inRandomOrder()->value('id') ?? Vehicle::factory(),
             'service_date' => $this->faker->dateTimeBetween('-6 months', 'now'),
             'service_type' => $this->faker->randomElement(['oil_change', 'brake_service', 'tire_rotation', 'inspection']),
-            'cost'         => $this->faker->numberBetween(50, 800),
+            'cost'         => $this->faker->numberBetween(2, 50, 800),
             'notes'        => $this->faker->sentence(),
         ];
     }

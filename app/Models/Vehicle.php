@@ -10,28 +10,39 @@ class Vehicle extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'plate_number',
+        'make',
+        'model',
+        'year',
+        'color',
+        'daily_rate',
+        'status', // available, maintenance, rented
+    ];
+
     public function driver()
     {
         return $this->hasOne(Driver::class);
     }
 
-    public function maintenanceRecords()
+    public function rental()
+    {
+        return $this->hasOne(Rental::class);
+    }
+
+    public function maintenance()
     {
         return $this->hasMany(Maintenance::class);
     }
 
-    public function rentals()
-    {
-        return $this->hasMany(Rental::class);
-    }
 
     public function expenses()
     {
-        return $this->hasMany(Expense::class);
+        return $this->hasMany(Expenses::class);
     }
 
     // If a contract ties a driver to a specific vehicle
-    public function workAndPayContracts()
+    public function WorkAndPayContract()
     {
         return $this->hasMany(WorkAndPayContract::class);
     }
