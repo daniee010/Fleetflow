@@ -77,5 +77,8 @@ class DatabaseSeeder extends Seeder
                 // 'payment_type' => Arr::random(['rental','contract']),
             ])
             ->create();
+
+        $this->call(MechanicLinkSeeder::class);
+
     }
 }

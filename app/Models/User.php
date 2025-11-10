@@ -46,4 +46,9 @@ class User extends Authenticatable
 //            'password' => 'hashed',
 //        ];
 //    }
+    public function mechanic()
+    {
+        // one-to-one: mechanics.user_id -> users.id
+        return $this->hasOne(Mechanic::class);
+    }
 }

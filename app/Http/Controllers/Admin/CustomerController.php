@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
 use App\Models\Vehicle;
-
+use App\Models\Mechanic;
 class CustomerController extends Controller
 {
     public function index()
@@ -29,8 +29,18 @@ class CustomerController extends Controller
 
     public function show(Customer $customer)
     {
-        $customer->load(['rentals.vehicle','payments.rental.vehicle']);
-        return view('backend.admin.customers.show', compact('customer'));
+        $customer->load([
+            'rentals.vehicle',
+            'payments' => fn($q) => $q->latest(),
+        ]);
+
+        $stats = [
+            'rentals_count' => $customer->rentals()->count(),
+            'total_spent'   => $customer->payments()->sum('amount'),
+            'active_rentals'=> $customer->rentals()->where('status','approved')->count(),
+        ];
+
+        return view('backend.admin.customers.show', compact('customer','stats'));
     }
 
     public function edit(Customer $customer)

@@ -39,7 +39,7 @@ class Maintenance extends Model
 
     public function mechanic()
     {
-        return $this->belongsTo(User::class, 'mechanic_id'); // remove if column doesn’t exist
+        return $this->belongsTo(Mechanic::class, 'mechanic_id'); // remove if column doesn’t exist
     }
 
     public function expense()

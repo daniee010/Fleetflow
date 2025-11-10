@@ -88,7 +88,11 @@
                 </button>
                 <ul x-show="open" @click.away="open = false"
                     class="absolute bg-white dark:bg-[#2b2b2b] text-gray-800 dark:text-gray-100 shadow-lg rounded-md mt-2 w-48 p-2 space-y-1 z-50">
-                    <li><a href="#" class="block px-3 py-1 hover:text-[#f53003] transition">Users</a></li>
+                    <li>
+                        <a href="{{ route('admin.users.index') }}" class="hover:text-[#f53003] transition">
+                            Users
+                        </a>
+                    </li>
                     <li><a href="#" class="block px-3 py-1 hover:text-[#f53003] transition">Company Profile</a></li>
                     <li><a href="#" class="block px-3 py-1 hover:text-[#f53003] transition">Notifications</a></li>
                 </ul>

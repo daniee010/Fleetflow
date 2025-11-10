@@ -9,8 +9,9 @@ use App\Http\Controllers\Admin\DriverController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\MaintenanceController;
 use App\Http\Controllers\Admin\ExpenseController;
+use App\Http\Controllers\Admin\MechanicController;
 use App\Http\Controllers\Admin\RentalController as AdminRentalController;
-use App\Http\Controllers\Admin\CustomerRentalController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\DB;
 use App\Models\{Driver,Expense,Customer,Payment,Rental,Vehicle,Maintenance,WorkAndPayContract};
 
@@ -31,6 +32,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         $vehicles = Vehicle::latest()->paginate(10);
         return view('backend.vehicles.index', compact('vehicles'));
     })->name('vehicles.index');
+
+    Route::get('/mechanics', [\App\Http\Controllers\Admin\MechanicController::class, 'index'])
+        ->name('mechanics.index');
+    Route::get('/mechanics/{mechanic}', [\App\Http\Controllers\Admin\MechanicController::class, 'show'])
+        ->name('mechanics.show');
+
+
 
 
     // Admin: Rental list
@@ -80,6 +88,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         'index','show','create','store','edit','update','destroy'
     ])->names('contracts');
 
+
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
 //    Route::get('settings/company', [Admin\SettingController::class, 'company'])->name('settings.company');
 //    Route::post('settings/company', [Admin\SettingController::class, 'saveCompany'])->name('settings.company.save');
 
@@ -97,6 +107,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::post('/contact', 'submitContact')->name('contact.submit');
     Route::get('/login', 'login')->name('login');
     Route::get('/register', 'register')->name('register');
+
 });
 
 // Public vehicles (for visitors)
