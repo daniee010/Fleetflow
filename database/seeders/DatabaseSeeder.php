@@ -14,6 +14,7 @@ use App\Models\Driver;
 use App\Models\Customer;
 use App\Models\Rental;
 use App\Models\Maintenance;
+use App\Models\Payment;
 
 class DatabaseSeeder extends Seeder
 {
@@ -71,5 +72,7 @@ class DatabaseSeeder extends Seeder
             ])
             ->create();
 
+        // Payment (driver-linked)  ← ADD THIS BLOCK
+        Payment::class::factory(20)->create();
     }
 }

@@ -10,30 +10,22 @@ class Driver extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'license_number',
+        'name',
+        'email',
         'phone',
+        'license_number',
         'address',
-        'status',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
+    // Each driver can be assigned a vehicle
     public function vehicle()
     {
         return $this->belongsTo(Vehicle::class);
     }
 
-    public function contracts()
+    // Each driver may have multiple payments
+    public function payments()
     {
-        return $this->hasMany(WorkAndPayContract::class);
-    }
-
-    public function rentals()
-    {
-        return $this->hasMany(Rental::class);
+        return $this->hasMany(Payment::class);
     }
 }

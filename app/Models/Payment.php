@@ -6,14 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Payments extends Model
+class Payment extends Model
 {
     use HasFactory;
 
-    public function rental()
+    protected $fillable = [
+        'driver_id',
+        'amount',
+        'payment_date',
+        'payment_type',
+        'notes',
+    ];
+
+    public function driver()
     {
         // payments.rental_id
-        return $this->belongsTo(Rental::class);
+        return $this->belongsTo(Driver::class);
     }
 
     // Optional: driver payout via contract

@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Admin\WorkAndPayContractController;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\DriverController;
 use Illuminate\Support\Facades\DB;
-use App\Models\{User,Vehicle,Customer, Rental,Maintenance};
+use App\Models\{Driver,Expenses,Customer,Payment,Rental,Vehicle,Maintenance,WorkAndPayContract};
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +23,42 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('backend.vehicles.index', compact('vehicles'));
     })->name('vehicles.index');
 
+
     // Admin: Rental list
     Route::get('/rentals', function () {
         $rentals = Rental::with(['customer','vehicle'])->latest()->paginate(10);
         return view('backend.rentals.index', compact('rentals'));
     })->name('rentals.index');
+
+
+    Route::get('/maintenances', function () {
+        $maintenances = Maintenance::with(['customer','vehicle'])->latest()->paginate(10);
+        return view('backend.maintenances.index', compact('maintenances'));
+    })->name('maintenances.index');
+
+
+
+    Route::resource('drivers', DriverController::class)->names('drivers');
+    Route::resource('customers', \App\Http\Controllers\Admin\CustomerController::class)->only(['index','show','create','store','edit','update','destroy']);
+    Route::resource('maintenance', \App\Http\Controllers\Admin\MaintenanceController::class)->only(['index','show','create','store','edit','update','destroy']);
+
+    Route::resource('expenses', \App\Http\Controllers\Admin\ExpenseController::class)->only(['index','create','store','edit','update','destroy']);
+
+//    Route::resource('payments', PaymentController::class)
+//        ->only(['index','create','store'])
+//        ->names('payments'); // admin.payments.index, admin.payments.create, admin.payments.store
+    Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
+    Route::get('/payments/{payment}', [PaymentController::class, 'show'])->name('payments.show');
+    Route::get('/payments/{payment}/edit', [PaymentController::class, 'edit'])->name('payments.edit');
+
+
+    Route::resource('contracts', WorkAndPayContractController::class)->only([
+        'index','show','create','store','edit','update','destroy'
+    ])->names('contracts');
+
+//    Route::get('settings/company', [Admin\SettingController::class, 'company'])->name('settings.company');
+//    Route::post('settings/company', [Admin\SettingController::class, 'saveCompany'])->name('settings.company.save');
+
 });
 
 /*
@@ -43,8 +77,8 @@ Route::controller(HomeController::class)->group(function () {
 
 // Public vehicles (for visitors)
 Route::prefix('vehicles')->name('vehicles.public.')->group(function () {
-    Route::get('/', [PublicVehicleController::class, 'index'])->name('index');
-    Route::get('/{vehicle}', [PublicVehicleController::class, 'show'])->name('show');
+//    Route::get('/', [PublicVehicleController::class, 'index'])->name('index');
+//    Route::get('/{vehicle}', [PublicVehicleController::class, 'show'])->name('show');
 });
 
 /*

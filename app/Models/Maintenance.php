@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Maintenance extends Model
 {
     use HasFactory;
-    protected $table = 'maintenance';
+    protected $table = 'maintenances';
     protected $fillable = [
         'vehicle_id', 'service_date', 'service_type', 'cost', 'notes',
     ];

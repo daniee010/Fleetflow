@@ -13,8 +13,9 @@
 
 {{-- Top Navigation --}}
 {{-- FleetFlow Admin Navigation --}}
+{{-- FleetFlow Admin Navigation --}}
 <nav class="bg-[#ffffff] dark:bg-[#1a1a1a] border-b border-gray-200 dark:border-[#333] shadow-sm sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-6 py-3">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-4 py-3">
 
         {{-- Brand --}}
         <a href="{{ route('admin.dashboard') }}" class="text-2xl font-bold text-[#f53003]">
@@ -22,7 +23,8 @@
         </a>
 
         {{-- Navigation Links --}}
-        <ul class="flex flex-wrap items-center space-x-28 font-medium text-gray-800 dark:text-gray-100">
+        <ul class="flex flex-wrap items-center space-x-6 font-medium text-gray-800 dark:text-gray-100">
+
             {{-- Dashboard --}}
             <li>
                 <a href="{{ route('admin.dashboard') }}" class="hover:text-[#f53003] transition">
@@ -37,8 +39,8 @@
                 </button>
                 <ul x-show="open" @click.away="open = false"
                     class="absolute bg-white dark:bg-[#2b2b2b] text-gray-800 dark:text-gray-100 shadow-lg rounded-md mt-2 w-48 p-2 space-y-1 z-50">
-                    <li><a href="#" class="block px-3 py-1 hover:text-[#f53003] transition">Vehicles</a></li>
-                    <li><a href="#" class="block px-3 py-1 hover:text-[#f53003] transition">Maintenance</a></li>
+                    <li><a href="{{ route('admin.vehicles.index') }}" class="block px-3 py-1 hover:text-[#f53003] transition">Vehicles</a></li>
+                    <li><a href="{{ route('admin.maintenance.index') }}" class="block px-3 py-1 hover:text-[#f53003] transition">Maintenance</a></li>
                 </ul>
             </li>
 
@@ -49,8 +51,8 @@
                 </button>
                 <ul x-show="open" @click.away="open = false"
                     class="absolute bg-white dark:bg-[#2b2b2b] text-gray-800 dark:text-gray-100 shadow-lg rounded-md mt-2 w-52 p-2 space-y-1 z-50">
-                    <li><a href="#" class="block px-3 py-1 hover:text-[#f53003] transition">Driver List</a></li>
-                    <li><a href="#" class="block px-3 py-1 hover:text-[#f53003] transition">Work & Pay Contracts</a></li>
+                    <li><a href="{{ route('admin.drivers.index') }}" class="block px-3 py-1 hover:text-[#f53003] transition">Driver List</a></li>
+                    <li><a href="{{ route('admin.contracts.index') }}" class="block px-3 py-1 hover:text-[#f53003] transition">Work & Pay Contracts</a></li>
                 </ul>
             </li>
 
@@ -61,8 +63,8 @@
                 </button>
                 <ul x-show="open" @click.away="open = false"
                     class="absolute bg-white dark:bg-[#2b2b2b] text-gray-800 dark:text-gray-100 shadow-lg rounded-md mt-2 w-48 p-2 space-y-1 z-50">
-                    <li><a href="#" class="block px-3 py-1 hover:text-[#f53003] transition">Income</a></li>
-                    <li><a href="#" class="block px-3 py-1 hover:text-[#f53003] transition">Expenses</a></li>
+                    <li><a href="{{ route('admin.payments.index') }}" class="block px-3 py-1 hover:text-[#f53003] transition">Income</a></li>
+                    <li><a href="{{ route('admin.expenses.index') }}" class="block px-3 py-1 hover:text-[#f53003] transition">Expenses</a></li>
                     <li><a href="#" class="block px-3 py-1 hover:text-[#f53003] transition">Reports</a></li>
                 </ul>
             </li>
@@ -74,8 +76,8 @@
                 </button>
                 <ul x-show="open" @click.away="open = false"
                     class="absolute bg-white dark:bg-[#2b2b2b] text-gray-800 dark:text-gray-100 shadow-lg rounded-md mt-2 w-48 p-2 space-y-1 z-50">
-                    <li><a href="#" class="block px-3 py-1 hover:text-[#f53003] transition">Bookings</a></li>
-                    <li><a href="#" class="block px-3 py-1 hover:text-[#f53003] transition">Customers</a></li>
+                    <li><a href="{{ route('admin.rentals.index') }}" class="block px-3 py-1 hover:text-[#f53003] transition">Bookings</a></li>
+                    <li><a href="{{ route('admin.customers.index') }}" class="block px-3 py-1 hover:text-[#f53003] transition">Customers</a></li>
                 </ul>
             </li>
 
@@ -92,6 +94,7 @@
                 </ul>
             </li>
         </ul>
+
 
         {{-- Logout --}}
         <button class="px-4 py-2 bg-[#f53003] text-white rounded-md hover:bg-black transition">

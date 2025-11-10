@@ -17,11 +17,12 @@ class DriverFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => \App\Models\User::factory(),
-            'license_number' => strtoupper(fake()->bothify('DRV-#####')),
-            'phone' => fake()->phoneNumber(),
-            'address' => fake()->address(),
-            'status' => 'active',
+            'name'           => $this->faker->name(),
+            'email'          => $this->faker->safeEmail(),
+            'phone'          => $this->faker->phoneNumber(),
+            'license_number' => strtoupper($this->faker->bothify('??######')),
+            'address'        => $this->faker->address(),
+            'vehicle_id'     => \App\Models\Vehicle::inRandomOrder()->value('id'), // may be null if none
         ];
     }
 }

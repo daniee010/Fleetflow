@@ -8,6 +8,17 @@ class WorkAndPayContract extends Model
 {
     use HasFactory;
 
+    protected $table = 'work_and_pay_contracts';
+
+    protected $fillable = [
+        'driver_id',
+        'vehicle_id',
+        'start_date',
+        'end_date',
+        'weekly_payment',
+        'status',
+        'notes',
+    ];
     public function driver()
     {
         // work_and_pay_contracts.driver_id
