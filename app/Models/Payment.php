@@ -12,12 +12,15 @@ class Payment extends Model
 
     protected $fillable = [
         'driver_id',
+        'rental_id',
         'amount',
         'payment_date',
         'payment_type',
         'notes',
     ];
-
+    public function rental(){
+        return $this->belongsTo(Rental::class);
+    }
     public function driver()
     {
         // payments.rental_id

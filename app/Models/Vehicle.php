@@ -38,7 +38,7 @@ class Vehicle extends Model
 
     public function expenses()
     {
-        return $this->hasMany(Expenses::class);
+        return $this->hasMany(Expense::class);
     }
 
     // If a contract ties a driver to a specific vehicle

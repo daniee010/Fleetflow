@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use App\Models\Maintenance;
 use App\Models\Vehicle;
 
@@ -27,8 +27,8 @@ class MaintenanceFactory extends Factory
             //
             'vehicle_id'   => Vehicle::query()->inRandomOrder()->value('id') ?? Vehicle::factory(),
             'service_date' => $this->faker->dateTimeBetween('-6 months', 'now'),
-            'service_type' => $this->faker->randomElement(['oil_change', 'brake_service', 'tire_rotation', 'inspection']),
-            'cost'         => $this->faker->numberBetween(2, 50, 800),
+            'service_type' => Arr::random(Maintenance::SERVICE_TYPES),
+            'cost'         => $this->faker->numberBetween(50, 1500,),
             'notes'        => $this->faker->sentence(),
         ];
     }

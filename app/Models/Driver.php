@@ -11,11 +11,14 @@ class Driver extends Model
 
     protected $fillable = [
         'name',
-        'email',
+        //'email',
         'phone',
         'license_number',
         'address',
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class); }
 
     // Each driver can be assigned a vehicle
     public function vehicle()

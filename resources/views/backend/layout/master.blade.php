@@ -108,6 +108,26 @@
 <main class="max-w-7xl mx-auto py-10 px-6">
     @yield('content')
 </main>
+@if (session('status'))
+    <div class="max-w-7xl mx-auto mt-4 px-6">
+        <div class="bg-green-50 border border-green-200 text-green-800 rounded-md px-4 py-3">
+            {{ session('status') }}
+        </div>
+    </div>
+@endif
+
+@if ($errors->any())
+    <div class="max-w-7xl mx-auto mt-4 px-6">
+        <div class="bg-red-50 border border-red-200 text-red-800 rounded-md px-4 py-3">
+            <ul class="list-disc ml-5">
+                @foreach ($errors->all() as $e)
+                    <li>{{ $e }}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+@endif
+
 
 </body>
 </html>

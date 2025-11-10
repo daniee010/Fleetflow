@@ -10,14 +10,17 @@ class PaymentFactory extends Factory
 {
     protected $model = Payment::class;
 
+
     public function definition(): array
     {
         return [
-            'driver_id'    => Driver::query()->inRandomOrder()->value('id') ?? Driver::factory(),
-            'amount'       => $this->faker->randomFloat(2, 50, 1500),
+            'driver_id'    => null, // set via state
+            'rental_id'    => null, // set via state
+            'amount'       => $this->faker->numberBetween(50, 1000),
             'payment_date' => $this->faker->dateTimeBetween('-6 months', 'now'),
             'payment_type' => $this->faker->randomElement(['rental','contract']),
             'notes'        => $this->faker->optional()->sentence(),
         ];
     }
+
 }

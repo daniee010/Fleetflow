@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Vehicle;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Driver>
@@ -17,8 +19,8 @@ class DriverFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'           => $this->faker->name(),
-            'email'          => $this->faker->safeEmail(),
+            'user_id'        => User::factory(),   // <-- puts name/email/password on users table
+            //'email'          => $this->faker->safeEmail(),
             'phone'          => $this->faker->phoneNumber(),
             'license_number' => strtoupper($this->faker->bothify('??######')),
             'address'        => $this->faker->address(),

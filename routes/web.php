@@ -6,8 +6,13 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Admin\WorkAndPayContractController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\DriverController;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\MaintenanceController;
+use App\Http\Controllers\Admin\ExpenseController;
+use App\Http\Controllers\Admin\RentalController as AdminRentalController;
+use App\Http\Controllers\Admin\CustomerRentalController;
 use Illuminate\Support\Facades\DB;
-use App\Models\{Driver,Expenses,Customer,Payment,Rental,Vehicle,Maintenance,WorkAndPayContract};
+use App\Models\{Driver,Expense,Customer,Payment,Rental,Vehicle,Maintenance,WorkAndPayContract};
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +22,10 @@ use App\Models\{Driver,Expenses,Customer,Payment,Rental,Vehicle,Maintenance,Work
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
+    Route::get('/rentals',        [AdminRentalController::class, 'index'])->name('rentals.index');
+    Route::get('/rentals/{rental}/edit', [AdminRentalController::class, 'edit'])->name('rentals.edit');
+    Route::patch('/rentals/{rental}',    [AdminRentalController::class, 'update'])->name('rentals.update');
+    Route::delete('/rentals/{rental}',   [AdminRentalController::class, 'destroy'])->name('rentals.destroy');
     // Admin: Vehicle list
     Route::get('/vehicles', function () {
         $vehicles = Vehicle::latest()->paginate(10);
@@ -25,24 +34,39 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
     // Admin: Rental list
-    Route::get('/rentals', function () {
-        $rentals = Rental::with(['customer','vehicle'])->latest()->paginate(10);
-        return view('backend.rentals.index', compact('rentals'));
-    })->name('rentals.index');
+//    Route::get('/rentals', function () {
+//        $rentals = Rental::with(['customer','vehicle'])->latest()->paginate(10);
+//        return view('backend.rentals.index', compact('rentals'));
+//    })->name('rentals.index');
+//
+//    Route::patch('/rentals/{rental}', [RentalController::class, 'update'])
+//        ->name('admin.rentals.update');
+//
+//    Route::delete('/rentals/{rental}', [RentalController::class, 'destroy'])
+//        ->name('admin.rentals.destroy');
 
 
-    Route::get('/maintenances', function () {
-        $maintenances = Maintenance::with(['customer','vehicle'])->latest()->paginate(10);
-        return view('backend.maintenances.index', compact('maintenances'));
-    })->name('maintenances.index');
+    Route::resource('maintenance', MaintenanceController::class)
+        ->only(['index','create','store','edit','update','destroy','show'])
+        ->names('maintenance');
 
 
 
     Route::resource('drivers', DriverController::class)->names('drivers');
-    Route::resource('customers', \App\Http\Controllers\Admin\CustomerController::class)->only(['index','show','create','store','edit','update','destroy']);
+    Route::resource('customers', CustomerController::class);
+
+    Route::post('/customers/{customer}/rentals', [AdminRentalController::class, 'store'])
+        ->name('customers.rentals.store');
+
+    Route::delete('/customers/{customer}/rentals/{rental}',
+        [AdminRentalController::class, 'destroyForCustomer']
+    )->name('customers.rentals.destroy');
+
     Route::resource('maintenance', \App\Http\Controllers\Admin\MaintenanceController::class)->only(['index','show','create','store','edit','update','destroy']);
 
-    Route::resource('expenses', \App\Http\Controllers\Admin\ExpenseController::class)->only(['index','create','store','edit','update','destroy']);
+    Route::resource('expenses', ExpenseController::class)
+        ->only(['index','create','store','edit','update','destroy','show'])
+        ->names('expenses');
 
 //    Route::resource('payments', PaymentController::class)
 //        ->only(['index','create','store'])

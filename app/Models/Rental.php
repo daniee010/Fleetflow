@@ -10,7 +10,7 @@ class Rental extends Model
     use HasFactory;
 
     protected $fillable = [
-        'customer_id','vehicle_id','start_date','end_date','total_price','status'
+        'customer_id','vehicle_id','start_date','end_date','total_cost','status'
     ];
 
     public function customer() {

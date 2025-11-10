@@ -1,36 +1,45 @@
-<?php
 @extends('backend.layout.master')
 @section('title','Customers')
 
 @section('content')
-    <h1 class="text-2xl font-bold mb-6">Customers</h1>
-
-    <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
-        <table class="min-w-full text-sm">
-            <thead class="text-left text-gray-600 dark:text-gray-300">
-            <tr>
-                <th class="py-2">ID</th>
-                <th class="py-2">Name</th>
-                <th class="py-2">Email</th>
-                <th class="py-2">Phone</th>
-                <th class="py-2">Actions</th>
-            </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-100 dark:divide-[#2a2a2a]">
-            @foreach($customers as $c)
-                <tr>
-                    <td class="py-2">{{ $c->id }}</td>
-                    <td class="py-2">{{ $c->name }}</td>
-                    <td class="py-2">{{ $c->email }}</td>
-                    <td class="py-2">{{ $c->phone }}</td>
-                    <td class="py-2">
-                        <a href="{{ route('admin.customers.show',$c) }}" class="text-[#f53003]">View</a>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-
-        <div class="mt-4">{{ $customers->links() }}</div>
+    <div class="flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-bold">Customers</h1>
+        <a href="{{ route('admin.customers.create') }}"
+           class="px-4 py-2 bg-[#f53003] text-white rounded-md hover:bg-black">Add Customer</a>
     </div>
+
+    <table class="min-w-full text-left bg-white dark:bg-[#161615] rounded-lg overflow-hidden">
+        <thead>
+        <tr>
+            <th class="px-4 py-3">#</th>
+            <th class="px-4 py-3">Name</th>
+            <th class="px-4 py-3">Email</th>
+            <th class="px-4 py-3">Phone</th>
+            <th class="px-4 py-3">Rentals</th>
+            <th class="px-4 py-3">Actions</th>
+        </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200/60">
+        @foreach($customers as $c)
+            <tr>
+                <td class="px-4 py-3">{{ $c->id }}</td>
+                <td class="px-4 py-3 font-medium">{{ $c->name }}</td>
+                <td class="px-4 py-3">{{ $c->email }}</td>
+                <td class="px-4 py-3">{{ $c->phone }}</td>
+                <td class="px-4 py-3">{{ $c->rentals()->count() }}</td>
+                <td class="px-4 py-3 space-x-3">
+                    <a href="{{ route('admin.customers.show', $c) }}" class="underline">View</a>
+                    <a href="{{ route('admin.customers.edit', $c) }}" class="underline">Edit</a>
+                    <form action="{{ route('admin.customers.destroy', $c) }}" method="POST" class="inline"
+                          onsubmit="return confirm('Delete this customer?');">
+                        @csrf @method('DELETE')
+                        <button class="underline text-red-600">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+
+    <div class="mt-4">{{ $customers->links() }}</div>
 @endsection
