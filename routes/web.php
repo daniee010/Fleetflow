@@ -95,6 +95,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 });
 
+
+Route::prefix('driver')->name('driver.')->group(function () {
+    Route::get('/dashboard', [\App\Http\Controllers\DriversController::class, 'index'])->name('dashboard');
+});
+
+
 /*
 |--------------------------------------------------------------------------
 | Frontend (Public) Routes

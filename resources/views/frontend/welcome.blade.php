@@ -38,7 +38,7 @@
             <a href="/about" class="px-6 py-3 border border-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-[#161615] transition">Learn More</a>
         </div>
     </div>
-    <img src="{{ asset('images/pngegg.png') }}" alt="FleetFlow Dashboard Illustration" class="w-full max-w-md mt-10 lg:mt-0">
+    <img src="{{ asset('assets/frontend/img/pngegg.png') }}" alt="FleetFlow Dashboard Illustration" class="w-full max-w-md mt-10 lg:mt-0">
 </section>
 
 {{-- Features Section --}}

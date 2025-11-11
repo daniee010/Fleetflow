@@ -16,7 +16,7 @@
 
             {{-- Mission Section --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mb-16">
-                <img src="{{ asset('images/fleet-illustration.png') }}" alt="FleetFlow System Overview" class="rounded-lg shadow-lg w-full">
+                <img src="{{ asset('assets/frontend/img/about-featured-img.jpg') }}" alt="FleetFlow System Overview" class="rounded-lg shadow-lg w-full">
                 <div>
                     <h2 class="text-2xl font-semibold mb-3 text-[#f53003]">Our Mission</h2>
                     <p class="text-gray-700 dark:text-[#A1A09A] leading-relaxed">
@@ -37,7 +37,7 @@
                         FleetFlow bridges the gap between technology and transportation, creating safer, smarter, and more connected journeys.
                     </p>
                 </div>
-                <img src="{{ asset('images/fleet-dashboard.png') }}" alt="FleetFlow Vision Illustration" class="rounded-lg shadow-lg w-full">
+                <img src="{{ asset('assets/frontend/img/2018-Honda-CR-V-LX.jpg') }}" alt="FleetFlow Vision Illustration" class="rounded-lg shadow-lg w-full">
             </div>
 
             {{-- Features Summary --}}
