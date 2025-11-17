@@ -6,7 +6,7 @@
     <h1 class="mb-4">Vehicles</h1>
     <table class="w-full text-left">
         <thead><tr>
-            <th>Plate</th><th>Make</th><th>Model</th><th>Year</th><th>Status</th><th>Rate</th>
+            <th>Platy3i3yie</th><th>Make</th><th>Model</th><th>Year</th><th>Status</th><th>Rate</th>
         </tr></thead>
         <tbody>
         @foreach($vehicles as $v)

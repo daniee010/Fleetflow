@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('driver_id')->constrained('drivers')->cascadeOnDelete();
             $table->decimal('amount', 10, 2);
             $table->date('payment_date');
-            $table->enum('payment_type', ['rental','contract'])->default('contract');
+            $table->enum('payment_type', ['rental','contracts'])->default('contracts');
             $table->text('notes')->nullable();
             $table->timestamps();
         });

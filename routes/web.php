@@ -9,7 +9,9 @@ use App\Http\Controllers\Admin\DriverController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\MaintenanceController;
 use App\Http\Controllers\Admin\ExpenseController;
+use App\Http\Controllers\Admin\VehicleController;
 use App\Http\Controllers\Admin\MechanicController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\RentalController as AdminRentalController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\DB;
@@ -23,83 +25,99 @@ use App\Models\{Driver,Expense,Customer,Payment,Rental,Vehicle,Maintenance,WorkA
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
-    Route::get('/rentals',        [AdminRentalController::class, 'index'])->name('rentals.index');
+    // Rentals
+    Route::get('/rentals', [AdminRentalController::class, 'index'])->name('rentals.index');
     Route::get('/rentals/{rental}/edit', [AdminRentalController::class, 'edit'])->name('rentals.edit');
-    Route::patch('/rentals/{rental}',    [AdminRentalController::class, 'update'])->name('rentals.update');
-    Route::delete('/rentals/{rental}',   [AdminRentalController::class, 'destroy'])->name('rentals.destroy');
-    // Admin: Vehicle list
-    Route::get('/vehicles', function () {
-        $vehicles = Vehicle::latest()->paginate(10);
-        return view('backend.vehicles.index', compact('vehicles'));
-    })->name('vehicles.index');
+    Route::patch('/rentals/{rental}', [AdminRentalController::class, 'update'])->name('rentals.update');
+    Route::delete('/rentals/{rental}', [AdminRentalController::class, 'destroy'])->name('rentals.destroy');
+    Route::get('/rentals/create', [AdminRentalController::class, 'create'])
+        ->name('rentals.create');
 
-    Route::get('/mechanics', [\App\Http\Controllers\Admin\MechanicController::class, 'index'])
-        ->name('mechanics.index');
-    Route::get('/mechanics/{mechanic}', [\App\Http\Controllers\Admin\MechanicController::class, 'show'])
-        ->name('mechanics.show');
+    Route::post('/rentals', [AdminRentalController::class, 'storeFromAdmin'])
+        ->name('rentals.store');
 
 
+    // VEHICLES ROUTES
 
+    Route::resource('vehicles', VehicleController::class)->names('vehicles');
 
-    // Admin: Rental list
-//    Route::get('/rentals', function () {
-//        $rentals = Rental::with(['customer','vehicle'])->latest()->paginate(10);
-//        return view('backend.rentals.index', compact('rentals'));
-//    })->name('rentals.index');
+//    Route::get('/vehicles', function () {
+//        $vehicles = Vehicle::latest()->paginate(10);
+//        // your index view is: resources/views/backend/admin/vehicles/index.blade.php
+//        return view('backend.admin.vehicles.index', compact('vehicles'));
+//    })->name('vehicles.index');   // → admin.vehicles.index
 //
-//    Route::patch('/rentals/{rental}', [RentalController::class, 'update'])
-//        ->name('admin.rentals.update');
+//    Route::get('/vehicles/create', function () {
+//        // your create view: resources/views/backend/admin/vehicles/create.blade.php
+//        return view('backend.admin.vehicles.create');
+//    })->name('vehicles.create');  // → admin.vehicles.create
 //
-//    Route::delete('/rentals/{rental}', [RentalController::class, 'destroy'])
-//        ->name('admin.rentals.destroy');
+//    Route::post('/vehicles', [VehicleController::class, 'store'])
+//        ->name('vehicles.store'); // → admin.vehicles.store
 
+    // Mechanics
+    Route::get('/mechanics', [MechanicController::class, 'index'])->name('mechanics.index');
+    Route::get('/mechanics/{mechanic}', [MechanicController::class, 'show'])->name('mechanics.show');
 
+    // Maintenance
     Route::resource('maintenance', MaintenanceController::class)
         ->only(['index','create','store','edit','update','destroy','show'])
         ->names('maintenance');
 
-
-
+    // Drivers & Customers
     Route::resource('drivers', DriverController::class)->names('drivers');
     Route::resource('customers', CustomerController::class);
 
     Route::post('/customers/{customer}/rentals', [AdminRentalController::class, 'store'])
         ->name('customers.rentals.store');
+    Route::delete('/customers/{customer}/rentals/{rental}', [AdminRentalController::class, 'destroyForCustomer'])
+        ->name('customers.rentals.destroy');
 
-    Route::delete('/customers/{customer}/rentals/{rental}',
-        [AdminRentalController::class, 'destroyForCustomer']
-    )->name('customers.rentals.destroy');
-
-    Route::resource('maintenance', \App\Http\Controllers\Admin\MaintenanceController::class)->only(['index','show','create','store','edit','update','destroy']);
-
+    // Expenses
     Route::resource('expenses', ExpenseController::class)
         ->only(['index','create','store','edit','update','destroy','show'])
         ->names('expenses');
 
-//    Route::resource('payments', PaymentController::class)
-//        ->only(['index','create','store'])
-//        ->names('payments'); // admin.payments.index, admin.payments.create, admin.payments.store
+    // Payments
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
     Route::get('/payments/{payment}', [PaymentController::class, 'show'])->name('payments.show');
     Route::get('/payments/{payment}/edit', [PaymentController::class, 'edit'])->name('payments.edit');
+    Route::put('/payments/{payment}', [PaymentController::class, 'update'])
+        ->name('payments.update');
+    // Record a SALES payment for a driver
+    Route::get('/drivers/{driver}/sales-payments/create', [PaymentController::class, 'createSalesForDriver'])
+        ->name('drivers.sales-payments.create');
+
+    Route::post('/drivers/{driver}/sales-payments', [PaymentController::class, 'storeSalesForDriver'])
+        ->name('drivers.sales-payments.store');
 
 
-    Route::resource('contracts', WorkAndPayContractController::class)->only([
-        'index','show','create','store','edit','update','destroy'
-    ])->names('contracts');
+
+    // Work & Pay contracts
+    Route::resource('contracts', WorkAndPayContractController::class)
+        ->only(['index','show','create','store','edit','update','destroy'])
+        ->names('contracts');
+
+    Route::get('contracts/{contract}/payments/create', [WorkAndPayContractController::class, 'paymentsCreate'])
+        ->name('contracts.payments.create');
+    Route::post('contracts/{contract}/payments', [WorkAndPayContractController::class, 'paymentsStore'])
+        ->name('contracts.payments.store');
+
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 
 
+    // Users
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
-//    Route::get('settings/company', [Admin\SettingController::class, 'company'])->name('settings.company');
-//    Route::post('settings/company', [Admin\SettingController::class, 'saveCompany'])->name('settings.company.save');
-
 });
 
-
+/*
+|--------------------------------------------------------------------------
+| Driver Routes
+|--------------------------------------------------------------------------
+*/
 Route::prefix('driver')->name('driver.')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\DriversController::class, 'index'])->name('dashboard');
 });
-
 
 /*
 |--------------------------------------------------------------------------
@@ -113,14 +131,16 @@ Route::controller(HomeController::class)->group(function () {
     Route::post('/contact', 'submitContact')->name('contact.submit');
     Route::get('/login', 'login')->name('login');
     Route::get('/register', 'register')->name('register');
-
 });
 
-// Public vehicles (for visitors)
-Route::prefix('vehicles')->name('vehicles.public.')->group(function () {
-//    Route::get('/', [PublicVehicleController::class, 'index'])->name('index');
-//    Route::get('/{vehicle}', [PublicVehicleController::class, 'show'])->name('show');
-});
+/*
+|--------------------------------------------------------------------------
+| Public vehicles (for visitors)
+|--------------------------------------------------------------------------
+*/
+//Route::prefix('vehicles')->name('vehicles.public.')->group(function () {
+//    // ...
+//});
 
 /*
 |--------------------------------------------------------------------------
@@ -143,7 +163,7 @@ Route::get('/diag', function () {
             'vehicles'    => Vehicle::count(),
             'customers'   => Customer::count(),
             'rentals'     => Rental::count(),
-            'maintenance' => Maintenance::count(), // singular table, model points to it
+            'maintenance' => Maintenance::count(),
         ],
         'sample_rental' => Rental::with(['customer:id,name,email','vehicle:id,plate_number,make,model'])
             ->latest()->first(),

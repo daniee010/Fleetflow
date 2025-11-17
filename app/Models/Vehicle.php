@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
-// app/Models/Vehicle.php
+
 {
     use HasFactory;
 
@@ -41,10 +41,30 @@ class Vehicle extends Model
         return $this->hasMany(Expense::class);
     }
 
-    // If a contract ties a driver to a specific vehicle
+    // If a contracts ties a driver to a specific vehicle
     public function WorkAndPayContract()
     {
         return $this->hasMany(WorkAndPayContract::class);
+    }
+
+    public function getSchemeLabelAttribute(): string
+    {
+        return match ($this->status) {
+            'sales'    => 'Sales Vehicle',
+            'contract' => 'Work & Pay Vehicle',
+            'rented'   => 'Rental Vehicle',
+            default    => 'Pool / General Fleet',
+        };
+    }
+
+    // For now, we treat daily_rate as the weekly payment when status is sales/contract
+    public function getWeeklyPaymentAttribute(): ?float
+    {
+        if (in_array($this->status, ['sales', 'contract'])) {
+            return $this->daily_rate;
+        }
+
+        return null;
     }
 }
 

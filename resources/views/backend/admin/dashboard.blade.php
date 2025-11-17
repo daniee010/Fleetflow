@@ -4,6 +4,36 @@
 @section('content')
     <div class="space-y-10">
 
+        {{-- Driver Overview --}}
+        <section>
+            <h2 class="text-xl font-bold text-[#f53003] mb-4">Driver Overview</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div class="bg-white dark:bg-[#161615] rounded-lg p-5 shadow text-center">
+                    <h4 class="text-gray-600 dark:text-gray-300">Sales Only Drivers</h4>
+                    <p class="text-3xl font-bold text-blue-600 mt-2">
+                        {{ number_format($stats['sales_only']) }}
+                    </p>
+                </div>
+
+                <div class="bg-white dark:bg-[#161615] rounded-lg p-5 shadow text-center">
+                    <h4 class="text-gray-600 dark:text-gray-300">Work & Pay Drivers</h4>
+                    <p class="text-3xl font-bold text-purple-600 mt-2">
+                        {{ number_format($stats['work_and_pay']) }}
+                    </p>
+                </div>
+
+                <div class="bg-white dark:bg-[#161615] rounded-lg p-5 shadow text-center">
+                    <h4 class="text-gray-600 dark:text-gray-300">Mixed Scheme Drivers</h4>
+                    <p class="text-3xl font-bold text-green-600 mt-2">
+                        {{ number_format($stats['mixed']) }}
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+
         {{-- Fleet Summary --}}
         <section>
             <h2 class="text-xl font-bold text-[#f53003] mb-4">Fleet Overview</h2>

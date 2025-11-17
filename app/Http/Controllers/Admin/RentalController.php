@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 
 class RentalController extends Controller
 {
+
+    public function create()
+    {
+        $customers = Customer::orderBy('name')->get();
+        $vehicles  = Vehicle::orderBy('plate_number')->get();
+
+        return view('backend.admin.rentals.create', compact('customers', 'vehicles'));
+    }
+
     public function index() {
         $rentals = Rental::with(['customer','vehicle'])->latest()->paginate(15);
         return view('backend.admin.rentals.index', compact('rentals'));
@@ -47,6 +56,24 @@ class RentalController extends Controller
         Rental::create($data);
 
         return back()->with('status', 'Rental added.');
+    }
+
+    public function storeFromAdmin(Request $request)
+    {
+        $data = $request->validate([
+            'customer_id' => ['required', 'exists:customers,id'],
+            'vehicle_id'  => ['required', 'exists:vehicles,id'],
+            'start_date'  => ['required', 'date'],
+            'end_date'    => ['required', 'date', 'after_or_equal:start_date'],
+            'status'      => ['required', 'in:pending,approved,completed,cancelled'],
+            'total_cost'  => ['required', 'numeric', 'min:0'],
+        ]);
+
+        Rental::create($data);
+
+        return redirect()
+            ->route('admin.rentals.index')
+            ->with('status', 'Rental created successfully.');
     }
 
     public function destroyForCustomer(Customer $customer, Rental $rental)

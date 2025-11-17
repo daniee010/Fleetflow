@@ -38,7 +38,7 @@
         <label class="block">
             <span class="block mb-1">Type</span>
             <select name="payment_type" class="border p-2 w-full rounded">
-                @foreach(['rental','contract'] as $opt)
+                @foreach(['rental','contracts'] as $opt)
                     <option value="{{ $opt }}" @selected(old('payment_type')===$opt)>{{ ucfirst($opt) }}</option>
                 @endforeach
             </select>

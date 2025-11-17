@@ -60,6 +60,15 @@ class MaintenanceController extends Controller
         return view('backend.admin.maintenance.edit', compact('maintenance', 'vehicles', 'types'));
     }
 
+    public function show(Maintenance $maintenance)
+    {
+        // Eager load anything you need, e.g. vehicle, mechanic
+        $maintenance->load(['vehicle', 'mechanic']);
+
+        return view('backend.admin.maintenance.show', compact('maintenance'));
+    }
+
+
     public function update(Request $request, Maintenance $maintenance)
     {
         $types = Maintenance::SERVICE_TYPES;
@@ -88,6 +97,8 @@ class MaintenanceController extends Controller
 
         return back()->with('status', 'Maintenance + Expense updated.');
     }
+
+
 
     public function destroy(Maintenance $maintenance)
     {

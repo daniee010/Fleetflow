@@ -65,7 +65,7 @@
                     class="absolute bg-white dark:bg-[#2b2b2b] text-gray-800 dark:text-gray-100 shadow-lg rounded-md mt-2 w-48 p-2 space-y-1 z-50">
                     <li><a href="{{ route('admin.payments.index') }}" class="block px-3 py-1 hover:text-[#f53003] transition">Income</a></li>
                     <li><a href="{{ route('admin.expenses.index') }}" class="block px-3 py-1 hover:text-[#f53003] transition">Expenses</a></li>
-                    <li><a href="#" class="block px-3 py-1 hover:text-[#f53003] transition">Reports</a></li>
+                    <li><a href="{{ route('admin.reports.index') }}" class="block px-3 py-1 hover:text-[#f53003] transition">Reports</a></li>
                 </ul>
             </li>
 

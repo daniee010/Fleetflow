@@ -13,9 +13,9 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        //
         $vehicles = Vehicle::query()->latest()->paginate(10);
-        return view('backend.vehicles.index', compact('vehicles'));
+
+        return view('backend.admin.vehicles.index', compact('vehicles'));
     }
 
     /**
@@ -23,8 +23,7 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        //
-        return view('backend.vehicles.create');
+        return view('backend.admin.vehicles.create');
     }
 
     /**
@@ -32,9 +31,13 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        Vehicle::create($request->validated());
-        return redirect()->route('admin.vehicles.index')->with('success','Vehicle created successfully.');
+        $data = $this->validateVehicle($request);
+
+        Vehicle::create($data);
+
+        return redirect()
+            ->route('admin.vehicles.index')
+            ->with('success', 'Vehicle created successfully.');
     }
 
     /**
@@ -42,8 +45,7 @@ class VehicleController extends Controller
      */
     public function show(Vehicle $vehicle)
     {
-        //
-        return view('backend.vehicles.show', compact('vehicle'));
+        return view('backend.admin.vehicles.show', compact('vehicle'));
     }
 
     /**
@@ -51,8 +53,7 @@ class VehicleController extends Controller
      */
     public function edit(Vehicle $vehicle)
     {
-        //
-        return view('backend.vehicles.edit', compact('vehicle'));
+        return view('backend.admin.vehicles.edit', compact('vehicle'));
     }
 
     /**
@@ -60,9 +61,13 @@ class VehicleController extends Controller
      */
     public function update(Request $request, Vehicle $vehicle)
     {
-        //
-        $vehicle->update($request->validated());
-        return redirect()->route('admin.vehicles.index')->with('success','Vehicle updated successfully.');
+        $data = $this->validateVehicle($request);
+
+        $vehicle->update($data);
+
+        return redirect()
+            ->route('admin.vehicles.index')
+            ->with('success', 'Vehicle updated successfully.');
     }
 
     /**
@@ -70,8 +75,26 @@ class VehicleController extends Controller
      */
     public function destroy(Vehicle $vehicle)
     {
-        //
         $vehicle->delete();
-        return redirect()->route('admin.vehicles.index')->with('success','Vehicle deleted.');
+
+        return redirect()
+            ->route('admin.vehicles.index')
+            ->with('success', 'Vehicle deleted.');
+    }
+
+    /**
+     * Centralized validation logic for creating/updating a vehicle.
+     */
+    protected function validateVehicle(Request $request): array
+    {
+        return $request->validate([
+            'plate_number' => 'required|string|max:50',
+            'make'         => 'required|string|max:100',
+            'model'        => 'required|string|max:100',
+            'year'         => 'nullable|integer',
+            'color'        => 'nullable|string|max:50',
+            'daily_rate'   => 'nullable|numeric|min:0',
+            'status'       => 'required|in:available,rented,maintenance,sales,contract',
+        ]);
     }
 }

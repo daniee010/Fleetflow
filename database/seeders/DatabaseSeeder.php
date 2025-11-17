@@ -74,7 +74,7 @@ class DatabaseSeeder extends Seeder
                 // if your payments table has driver_id and you want it set:
                 'driver_id'    => Arr::random($driverIds), // remove if not desired
                 // you can also set payment_type here if you want a mix:
-                // 'payment_type' => Arr::random(['rental','contract']),
+                // 'payment_type' => Arr::random(['rental','contracts']),
             ])
             ->create();
 
