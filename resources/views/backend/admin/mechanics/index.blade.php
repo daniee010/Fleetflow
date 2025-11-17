@@ -7,7 +7,7 @@
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach($mechanics as $m)
             <a href="{{ route('admin.mechanics.show',$m) }}"
-               class="block bg-white dark:bg-[#161615] rounded-lg p-5 shadow hover:shadow-md transition">
+               class="block bg-white rounded-lg p-5 shadow hover:shadow-md transition">
                 <div class="font-semibold text-lg">
                     {{ optional($m->user)->name ?? 'Mechanic #'.$m->id }}
                 </div>
@@ -15,7 +15,7 @@
                     {{ optional($m->user)->email }}
                 </div>
                 <div class="mt-2">
-            <span class="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">
+            <span class="text-xs px-2 py-1 rounded bg-gray-100">
                 Specialization: {{ $m->specialization }}
             </span>
                 </div>

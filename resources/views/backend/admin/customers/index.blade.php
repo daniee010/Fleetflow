@@ -8,7 +8,7 @@
            class="px-4 py-2 bg-[#f53003] text-white rounded-md hover:bg-black">Add Customer</a>
     </div>
 
-    <table class="min-w-full text-left bg-white dark:bg-[#161615] rounded-lg overflow-hidden">
+    <table class="min-w-full text-left bg-white rounded-lg overflow-hidden">
         <thead>
         <tr>
             <th class="px-4 py-3">#</th>

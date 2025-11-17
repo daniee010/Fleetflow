@@ -18,7 +18,7 @@
         @foreach($chips as $c)
             <a href="{{ route('admin.users.index', array_filter(['role' => $c['role']])) }}"
                class="px-3 py-1 rounded-full border text-sm
-                      {{ ($role === ($c['role'] ?? null)) ? 'bg-[#f53003] text-white border-[#f53003]' : 'bg-white dark:bg-[#161615] border-gray-200 dark:border-gray-700' }}">
+                      {{ ($role === ($c['role'] ?? null)) ? 'bg-[#f53003] text-white border-[#f53003]' : 'bg-white border-gray-200' }}">
                 {{ $c['label'] }}
                 <span class="ml-1 text-xs opacity-75">({{ $c['count'] }})</span>
             </a>
@@ -26,9 +26,9 @@
     </div>
 
     {{-- Table --}}
-    <div class="overflow-x-auto bg-white dark:bg-[#161615] rounded-lg shadow">
+    <div class="overflow-x-auto bg-white rounded-lg shadow">
         <table class="min-w-full text-left">
-            <thead class="text-sm uppercase text-gray-500 dark:text-gray-300">
+            <thead class="text-sm uppercase text-gray-500">
             <tr>
                 <th class="px-4 py-3">#</th>
                 <th class="px-4 py-3">Name</th>
@@ -38,7 +38,7 @@
                 <th class="px-4 py-3 text-right">Actions</th>
             </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+            <tbody class="divide-y divide-gray-100">
             @forelse($users as $u)
                 <tr class="text-sm">
                     <td class="px-4 py-3">{{ $u->id }}</td>

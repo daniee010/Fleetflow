@@ -12,9 +12,9 @@
             </a>
         </div>
 
-        <div class="bg-white dark:bg-[#161615] rounded-lg shadow overflow-x-auto">
+        <div class="bg-white rounded-lg shadow overflow-x-auto">
             <table class="min-w-full text-sm">
-                <thead class="bg-gray-50 dark:bg-[#1f1f1f]">
+                <thead class="bg-gray-50">
                 <tr class="text-left">
                     <th class="px-4 py-3">#</th>
                     <th class="px-4 py-3">Driver</th>
@@ -25,10 +25,10 @@
                     <th class="px-4 py-3">Status</th>
                     <th class="px-4 py-3 text-right">Actions</th>
                 </tr>
-                </thead>  <thead class="bg-gray-50 dark:bg-[#1f1f1f]">
+                </thead>  <thead class="bg-gray-50">
                 <tbody>
                 @forelse($contracts as $c)
-                    <tr class="border-t border-gray-200 dark:border-[#2a2a2a]">
+                    <tr class="border-t border-gray-200">
                         <td class="px-4 py-3">{{ $c->id }}</td>
                         <td class="px-4 py-3">
                             {{ optional($c->driver)->name ?? '—' }}

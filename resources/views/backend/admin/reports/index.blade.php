@@ -18,7 +18,7 @@
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {{-- Rental income --}}
-                <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+                <div class="bg-white rounded-lg shadow p-4">
                     <p class="text-xs text-gray-500 uppercase">Rental Revenue</p>
                     <p class="text-xl font-bold mt-1">
                         GH₵ {{ number_format($rentalRevenue, 2) }}
@@ -29,7 +29,7 @@
                 </div>
 
                 {{-- Work & Pay contracts --}}
-                <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+                <div class="bg-white rounded-lg shadow p-4">
                     <p class="text-xs text-gray-500 uppercase">Work &amp; Pay Revenue</p>
                     <p class="text-xl font-bold mt-1">
                         GH₵ {{ number_format($workAndPayRevenue, 2) }}
@@ -40,7 +40,7 @@
                 </div>
 
                 {{-- Sales-only / non-contract driver payments --}}
-                <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+                <div class="bg-white rounded-lg shadow p-4">
                     <p class="text-xs text-gray-500 uppercase">Sales Driver Revenue</p>
                     <p class="text-xl font-bold mt-1">
                         GH₵ {{ number_format($salesRevenue, 2) }}
@@ -51,7 +51,7 @@
                 </div>
 
                 {{-- Total --}}
-                <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+                <div class="bg-white rounded-lg shadow p-4">
                     <p class="text-xs text-gray-500 uppercase">Total Revenue</p>
                     <p class="text-2xl font-bold mt-1 text-green-600">
                         GH₵ {{ number_format($totalRevenue, 2) }}
@@ -69,32 +69,32 @@
             <h2 class="text-lg font-semibold mb-3">Fleet Overview</h2>
 
             <div class="grid sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4 text-center">
+                <div class="bg-white rounded-lg shadow p-4 text-center">
                     <p class="text-xs text-gray-500 uppercase">Total Vehicles</p>
                     <p class="text-2xl font-bold mt-1">{{ $fleet['total'] }}</p>
                 </div>
 
-                <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4 text-center">
+                <div class="bg-white rounded-lg shadow p-4 text-center">
                     <p class="text-xs text-gray-500 uppercase">Available</p>
                     <p class="text-2xl font-bold mt-1 text-green-600">{{ $fleet['available'] }}</p>
                 </div>
 
-                <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4 text-center">
+                <div class="bg-white rounded-lg shadow p-4 text-center">
                     <p class="text-xs text-gray-500 uppercase">Rented</p>
                     <p class="text-2xl font-bold mt-1 text-blue-600">{{ $fleet['rented'] }}</p>
                 </div>
 
-                <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4 text-center">
+                <div class="bg-white rounded-lg shadow p-4 text-center">
                     <p class="text-xs text-gray-500 uppercase">Maintenance</p>
                     <p class="text-2xl font-bold mt-1 text-yellow-600">{{ $fleet['maintenance'] }}</p>
                 </div>
 
-                <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4 text-center">
+                <div class="bg-white rounded-lg shadow p-4 text-center">
                     <p class="text-xs text-gray-500 uppercase">Contract</p>
                     <p class="text-2xl font-bold mt-1 text-purple-600">{{ $fleet['contract'] }}</p>
                 </div>
 
-                <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4 text-center">
+                <div class="bg-white rounded-lg shadow p-4 text-center">
                     <p class="text-xs text-gray-500 uppercase">Sales</p>
                     <p class="text-2xl font-bold mt-1 text-orange-600">{{ $fleet['sales'] }}</p>
                 </div>
@@ -106,19 +106,19 @@
             <h2 class="text-lg font-semibold mb-3">Maintenance Overview</h2>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+                <div class="bg-white rounded-lg shadow p-4">
                     <p class="text-xs text-gray-500 uppercase">Maintenance Records</p>
                     <p class="text-2xl font-bold mt-1">{{ $maintenanceCount }}</p>
                 </div>
 
-                <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+                <div class="bg-white rounded-lg shadow p-4">
                     <p class="text-xs text-gray-500 uppercase">Total Maintenance Cost</p>
                     <p class="text-2xl font-bold mt-1 text-red-600">
                         GH₵ {{ number_format($maintenanceTotalCost, 2) }}
                     </p>
                 </div>
 
-                <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+                <div class="bg-white rounded-lg shadow p-4">
                     <p class="text-xs text-gray-500 uppercase">Most Maintained Vehicle</p>
                     @if($topMaintenanceVehicle && $topMaintenanceVehicle->vehicle)
                         <p class="text-sm font-semibold mt-1">
@@ -142,9 +142,9 @@
         <section>
             <h2 class="text-lg font-semibold mb-3">Recent Payments</h2>
 
-            <div class="bg-white dark:bg-[#161615] rounded-lg shadow overflow-x-auto">
+            <div class="bg-white rounded-lg shadow overflow-x-auto">
                 <table class="min-w-full text-sm">
-                    <thead class="border-b text-gray-600 dark:text-gray-300">
+                    <thead class="border-b text-gray-600">
                     <tr>
                         <th class="px-4 py-3">ID</th>
                         <th class="px-4 py-3">Name</th>

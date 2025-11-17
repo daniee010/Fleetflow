@@ -21,6 +21,7 @@ class DriverFactory extends Factory
         return [
             'user_id'        => User::factory(),   // <-- puts name/email/password on users table
             //'email'          => $this->faker->safeEmail(),
+            'name'           => $this->faker->name(),
             'phone'          => $this->faker->phoneNumber(),
             'license_number' => strtoupper($this->faker->bothify('??######')),
             'address'        => $this->faker->address(),

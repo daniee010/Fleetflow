@@ -41,7 +41,7 @@
     {{-- Top summary cards --}}
     <div class="grid md:grid-cols-3 gap-4 mb-8">
         {{-- Driver / Contact --}}
-        <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+        <div class="bg-white rounded-lg shadow p-4">
             <h2 class="text-sm font-semibold text-gray-500 mb-2">Driver Profile</h2>
             <div class="space-y-1 text-sm">
                 <div><span class="font-semibold">Name:</span> {{ $driver->name }}</div>
@@ -55,7 +55,7 @@
         </div>
 
         {{-- Vehicle assignment --}}
-        <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+        <div class="bg-white rounded-lg shadow p-4">
             <h2 class="text-sm font-semibold text-gray-500 mb-2">Assigned Vehicle</h2>
             @if($driver->vehicle)
                 <div class="text-sm space-y-1">
@@ -75,7 +75,7 @@
         </div>
 
         {{-- Work & Pay summary --}}
-        <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+        <div class="bg-white rounded-lg shadow p-4">
             <h2 class="text-sm font-semibold text-gray-500 mb-2">Work &amp; Pay Summary</h2>
 
             @if($contract)
@@ -140,7 +140,7 @@
                 </a>
             </div>
 
-            <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+            <div class="bg-white rounded-lg shadow p-4">
                 @php
                     $totalSales = $driver->salesPayments->sum('amount');
                 @endphp
@@ -195,7 +195,7 @@
 
     <div class="grid lg:grid-cols-2 gap-6">
         {{-- Work & Pay Contracts list --}}
-        <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+        <div class="bg-white rounded-lg shadow p-4">
             <h2 class="text-sm font-semibold mb-3">Work &amp; Pay Contracts</h2>
 
             @if($driver->workAndPayContracts->isEmpty())
@@ -203,7 +203,7 @@
             @else
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-xs text-left">
-                        <thead class="border-b text-gray-600 dark:text-gray-300">
+                        <thead class="border-b text-gray-600">
                         <tr>
                             <th class="px-3 py-2">ID</th>
                             <th class="px-3 py-2">Vehicle</th>
@@ -214,7 +214,7 @@
                             <th class="px-3 py-2"></th>
                         </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-100 dark:divide-[#2a2a2a]">
+                        <tbody class="divide-y divide-gray-100">
                         @foreach($driver->workAndPayContracts as $c)
                             @php
                                 $cTotal   = $c->total_amount ?? 0;
@@ -252,7 +252,7 @@
         </div>
 
         {{-- Payments --}}
-        <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+        <div class="bg-white rounded-lg shadow p-4">
             <h2 class="text-sm font-semibold mb-3">Recent Payments</h2>
 
             @if($driver->payments->isEmpty())
@@ -260,7 +260,7 @@
             @else
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-xs text-left">
-                        <thead class="border-b text-gray-600 dark:text-gray-300">
+                        <thead class="border-b text-gray-600">
                         <tr>
                             <th class="px-3 py-2">Date</th>
                             <th class="px-3 py-2">Amount</th>
@@ -268,7 +268,7 @@
                             <th class="px-3 py-2">Notes</th>
                         </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-100 dark:divide-[#2a2a2a]">
+                        <tbody class="divide-y divide-gray-100">
                         @foreach($driver->payments as $p)
                             <tr>
                                 <td class="px-3 py-2">
@@ -293,7 +293,7 @@
     </div>
 
     {{-- Trips section --}}
-    <div class="mt-8 bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+    <div class="mt-8 bg-white rounded-lg shadow p-4">
         <h2 class="text-sm font-semibold mb-3">Recent Trips</h2>
 
         @if($driver->trips->isEmpty())
@@ -301,7 +301,7 @@
         @else
             <div class="overflow-x-auto">
                 <table class="min-w-full text-xs text-left">
-                    <thead class="border-b text-gray-600 dark:text-gray-300">
+                    <thead class="border-b text-gray-600">
                     <tr>
                         <th class="px-3 py-2">Date</th>
                         <th class="px-3 py-2">Origin</th>
@@ -309,7 +309,7 @@
                         <th class="px-3 py-2">Revenue</th>
                     </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-100 dark:divide-[#2a2a2a]">
+                    <tbody class="divide-y divide-gray-100">
                     @foreach($driver->trips as $t)
                         <tr>
                             <td class="px-3 py-2">

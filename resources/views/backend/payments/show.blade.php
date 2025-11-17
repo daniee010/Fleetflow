@@ -4,7 +4,7 @@
 @section('content')
     <h1 class="text-2xl font-bold mb-6">Payment #{{ $payment->id }}</h1>
 
-    <div class="bg-white dark:bg-[#161615] rounded-lg p-5 shadow max-w-2xl space-y-2">
+    <div class="bg-white rounded-lg p-5 shadow max-w-2xl space-y-2">
         <div><strong>Driver:</strong> {{ optional($payment->driver)->name ?? '—' }}</div>
         <div><strong>Amount:</strong> {{ number_format($payment->amount,2) }}</div>
         <div><strong>Date:</strong> {{ \Illuminate\Support\Carbon::parse($payment->payment_date)->toFormattedDateString() }}</div>

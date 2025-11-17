@@ -11,14 +11,14 @@
     </div>
 
     @if ($payments->count() === 0)
-        <div class="bg-white dark:bg-[#161615] border rounded p-6 text-center">
-            <p class="text-gray-600 dark:text-gray-300">No payments found yet.</p>
+        <div class="bg-white border rounded p-6 text-center">
+            <p class="text-gray-600">No payments found yet.</p>
             <a href="{{ route('admin.payments.create') }}" class="inline-block mt-3 underline">Create your first payment</a>
         </div>
     @else
-        <div class="overflow-x-auto bg-white dark:bg-[#161615] border rounded">
+        <div class="overflow-x-auto bg-white border rounded">
             <table class="min-w-full text-left text-sm">
-                <thead class="bg-gray-50 dark:bg-[#1f1f1f] text-gray-700 dark:text-gray-200">
+                <thead class="bg-gray-50 text-gray-700">
                 <tr>
                     <th class="px-4 py-3">ID</th>
                     <th class="px-4 py-3">Driver</th>
@@ -28,9 +28,9 @@
                     <th class="px-4 py-3 w-px"></th>
                 </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100 dark:divide-[#2a2a2a]">
+                <tbody class="divide-y divide-gray-100">
                 @foreach($payments as $p)
-                    <tr class="hover:bg-gray-50/70 dark:hover:bg-[#1a1a1a]">
+                    <tr class="hover:bg-gray-50/70">
                         <td class="px-4 py-3 font-medium">#{{ $p->id }}</td>
                         <td class="px-4 py-3">{{ optional($p->driver)->name ?? '—' }}</td>
                         <td class="px-4 py-3">

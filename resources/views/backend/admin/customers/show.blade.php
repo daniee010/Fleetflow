@@ -3,7 +3,7 @@
 
 {{--@section('content')--}}
 {{--    <h1 class="text-2xl font-bold mb-2">{{ $customer->name }}</h1>--}}
-{{--    <p class="text-gray-600 dark:text-gray-300 mb-6">{{ $customer->email }} • {{ $customer->phone }}</p>--}}
+{{--    <p class="text-gray-600 mb-6">{{ $customer->email }} • {{ $customer->phone }}</p>--}}
 
 {{--    @if($customer->address)--}}
 {{--        <p class="mb-6"><span class="font-medium">Address:</span> {{ $customer->address }}</p>--}}
@@ -13,7 +13,7 @@
 {{--        --}}{{-- Rentals --}}
 {{--        <div>--}}
 {{--            <h2 class="text-xl font-semibold mb-3">Rentals</h2>--}}
-{{--            <div class="bg-white dark:bg-[#161615] rounded-lg overflow-hidden">--}}
+{{--            <div class="bg-white rounded-lg overflow-hidden">--}}
 {{--                <table class="min-w-full text-left">--}}
 {{--                    <thead>--}}
 {{--                    <tr>--}}
@@ -44,7 +44,7 @@
 {{--        --}}{{-- Payments --}}
 {{--        <div>--}}
 {{--            <h2 class="text-xl font-semibold mb-3">Payments</h2>--}}
-{{--            <div class="bg-white dark:bg-[#161615] rounded-lg overflow-hidden">--}}
+{{--            <div class="bg-white rounded-lg overflow-hidden">--}}
 {{--                <table class="min-w-full text-left">--}}
 {{--                    <thead>--}}
 {{--                    <tr>--}}
@@ -87,22 +87,22 @@
     <h1 class="text-2xl font-bold mb-6">Customer: {{ $customer->name }}</h1>
 
     <div class="grid lg:grid-cols-3 gap-6">
-        <div class="bg-white dark:bg-[#161615] rounded p-4 shadow">
+        <div class="bg-white rounded p-4 shadow">
             <h3 class="font-semibold mb-2">Profile</h3>
             <p><strong>Email:</strong> {{ $customer->email }}</p>
             <p><strong>Phone:</strong> {{ $customer->phone ?? '—' }}</p>
             <p><strong>Address:</strong> {{ $customer->address ?? '—' }}</p>
 
             <div class="mt-4 grid grid-cols-3 gap-3 text-center">
-                <div class="bg-gray-50 dark:bg-[#0f0f0f] p-3 rounded">
+                <div class="bg-gray-50 p-3 rounded">
                     <div class="text-sm text-gray-500">Rentals</div>
                     <div class="text-xl font-bold">{{ $stats['rentals_count'] }}</div>
                 </div>
-                <div class="bg-gray-50 dark:bg-[#0f0f0f] p-3 rounded">
+                <div class="bg-gray-50 p-3 rounded">
                     <div class="text-sm text-gray-500">Active</div>
                     <div class="text-xl font-bold">{{ $stats['active_rentals'] }}</div>
                 </div>
-                <div class="bg-gray-50 dark:bg-[#0f0f0f] p-3 rounded">
+                <div class="bg-gray-50 p-3 rounded">
                     <div class="text-sm text-gray-500">Spent</div>
                     <div class="text-xl font-bold">${{ number_format($stats['total_spent'],2) }}</div>
                 </div>
@@ -110,11 +110,11 @@
         </div>
 
         <div class="lg:col-span-2 space-y-6">
-            <div class="bg-white dark:bg-[#161615] rounded p-4 shadow">
+            <div class="bg-white rounded p-4 shadow">
                 <h3 class="font-semibold mb-3">Rentals</h3>
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-left">
-                        <thead class="text-xs uppercase text-gray-500 dark:text-gray-300">
+                        <thead class="text-xs uppercase text-gray-500">
                         <tr>
                             <th class="px-3 py-2">#</th>
                             <th class="px-3 py-2">Vehicle</th>
@@ -124,7 +124,7 @@
                             <th class="px-3 py-2">Status</th>
                         </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+                        <tbody class="divide-y divide-gray-100">
                         @forelse($customer->rentals as $r)
                             <tr class="text-sm">
                                 <td class="px-3 py-2">{{ $r->id }}</td>
@@ -145,11 +145,11 @@
                 </div>
             </div>
 
-            <div class="bg-white dark:bg-[#161615] rounded p-4 shadow">
+            <div class="bg-white rounded p-4 shadow">
                 <h3 class="font-semibold mb-3">Payments</h3>
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-left">
-                        <thead class="text-xs uppercase text-gray-500 dark:text-gray-300">
+                        <thead class="text-xs uppercase text-gray-500">
                         <tr>
                             <th class="px-3 py-2">#</th>
                             <th class="px-3 py-2">Amount</th>
@@ -158,7 +158,7 @@
                             <th class="px-3 py-2">Notes</th>
                         </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+                        <tbody class="divide-y divide-gray-100">
                         @forelse($customer->payments as $p)
                             <tr class="text-sm">
                                 <td class="px-3 py-2">{{ $p->id }}</td>

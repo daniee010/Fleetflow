@@ -12,9 +12,9 @@
     </div>
 
 
-    <div class="overflow-x-auto bg-white dark:bg-[#161615] rounded-lg shadow">
+    <div class="overflow-x-auto bg-white rounded-lg shadow">
         <table class="min-w-full text-left">
-            <thead class="text-sm uppercase text-gray-500 dark:text-gray-300">
+            <thead class="text-sm uppercase text-gray-500">
             <tr>
                 <th class="px-4 py-3">#</th>
                 <th class="px-4 py-3">Customer</th>
@@ -27,7 +27,7 @@
             </tr>
             </thead>
 
-            <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+            <tbody class="divide-y divide-gray-100">
             @forelse($rentals as $rental)
                 <tr class="text-sm">
                     <td class="px-4 py-3">{{ $rental->id }}</td>

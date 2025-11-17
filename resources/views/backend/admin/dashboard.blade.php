@@ -9,22 +9,22 @@
             <h2 class="text-xl font-bold text-[#f53003] mb-4">Driver Overview</h2>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                <div class="bg-white dark:bg-[#161615] rounded-lg p-5 shadow text-center">
-                    <h4 class="text-gray-600 dark:text-gray-300">Sales Only Drivers</h4>
+                <div class="bg-white rounded-lg p-5 shadow text-center">
+                    <h4 class="text-gray-600">Sales Only Drivers</h4>
                     <p class="text-3xl font-bold text-blue-600 mt-2">
                         {{ number_format($stats['sales_only']) }}
                     </p>
                 </div>
 
-                <div class="bg-white dark:bg-[#161615] rounded-lg p-5 shadow text-center">
-                    <h4 class="text-gray-600 dark:text-gray-300">Work & Pay Drivers</h4>
+                <div class="bg-white rounded-lg p-5 shadow text-center">
+                    <h4 class="text-gray-600">Work & Pay Drivers</h4>
                     <p class="text-3xl font-bold text-purple-600 mt-2">
                         {{ number_format($stats['work_and_pay']) }}
                     </p>
                 </div>
 
-                <div class="bg-white dark:bg-[#161615] rounded-lg p-5 shadow text-center">
-                    <h4 class="text-gray-600 dark:text-gray-300">Mixed Scheme Drivers</h4>
+                <div class="bg-white rounded-lg p-5 shadow text-center">
+                    <h4 class="text-gray-600">Mixed Scheme Drivers</h4>
                     <p class="text-3xl font-bold text-green-600 mt-2">
                         {{ number_format($stats['mixed']) }}
                     </p>
@@ -38,27 +38,27 @@
         <section>
             <h2 class="text-xl font-bold text-[#f53003] mb-4">Fleet Overview</h2>
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white dark:bg-[#161615] rounded-lg p-5 shadow text-center">
-                    <h4 class="text-gray-600 dark:text-gray-300">Total Vehicles</h4>
-                    <p class="text-3xl font-bold text-gray-900 dark:text-white mt-2">
+                <div class="bg-white rounded-lg p-5 shadow text-center">
+                    <h4 class="text-gray-600">Total Vehicles</h4>
+                    <p class="text-3xl font-bold text-gray-900 mt-2">
                         {{ number_format($stats['vehicles']) }}
                     </p>
                 </div>
-                <div class="bg-white dark:bg-[#161615] rounded-lg p-5 shadow text-center">
-                    <h4 class="text-gray-600 dark:text-gray-300">Total Customers</h4>
-                    <p class="text-3xl font-bold text-gray-900 dark:text-white mt-2">
+                <div class="bg-white rounded-lg p-5 shadow text-center">
+                    <h4 class="text-gray-600">Total Customers</h4>
+                    <p class="text-3xl font-bold text-gray-900 mt-2">
                         {{ number_format($stats['customers']) }}
                     </p>
                 </div>
-                <div class="bg-white dark:bg-[#161615] rounded-lg p-5 shadow text-center">
-                    <h4 class="text-gray-600 dark:text-gray-300">Maintenance Records</h4>
-                    <p class="text-3xl font-bold text-gray-900 dark:text-white mt-2">
+                <div class="bg-white rounded-lg p-5 shadow text-center">
+                    <h4 class="text-gray-600">Maintenance Records</h4>
+                    <p class="text-3xl font-bold text-gray-900 mt-2">
                         {{ number_format($stats['maintenance']) }}
                     </p>
                 </div>
-                <div class="bg-white dark:bg-[#161615] rounded-lg p-5 shadow text-center">
-                    <h4 class="text-gray-600 dark:text-gray-300">Active Rentals</h4>
-                    <p class="text-3xl font-bold text-gray-900 dark:text-white mt-2">
+                <div class="bg-white rounded-lg p-5 shadow text-center">
+                    <h4 class="text-gray-600">Active Rentals</h4>
+                    <p class="text-3xl font-bold text-gray-900 mt-2">
                         {{ number_format($stats['activeRentals']) }}
                     </p>
                 </div>
@@ -69,8 +69,8 @@
         <section>
             <h2 class="text-xl font-bold text-[#f53003] mb-4">Financial Overview</h2>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white dark:bg-[#161615] rounded-lg p-5 shadow text-center">
-                    <h4 class="text-gray-600 dark:text-gray-300">Total Revenue</h4>
+                <div class="bg-white rounded-lg p-5 shadow text-center">
+                    <h4 class="text-gray-600">Total Revenue</h4>
                     <p class="text-3xl font-bold text-green-600 mt-2">
                         ${{ number_format($stats['revenue'], 2) }}
                     </p>
@@ -81,9 +81,9 @@
         {{-- Recent Rentals --}}
         <section>
             <h2 class="text-xl font-bold text-[#f53003] mb-4">Recent Rentals</h2>
-            <div class="bg-white dark:bg-[#161615] rounded-lg p-5 shadow overflow-x-auto">
+            <div class="bg-white rounded-lg p-5 shadow overflow-x-auto">
                 <table class="min-w-full text-left">
-                    <thead class="border-b border-gray-200 dark:border-[#333]">
+                    <thead class="border-b border-gray-200">
                     <tr>
                         <th class="py-2 px-4">Customer</th>
                         <th class="py-2 px-4">Vehicle</th>
@@ -95,7 +95,7 @@
                     </thead>
                     <tbody>
                     @forelse($recentRentals as $rental)
-                        <tr class="border-b border-gray-100 dark:border-[#333]">
+                        <tr class="border-b border-gray-100">
                             <td class="py-2 px-4">{{ $rental->customer->name ?? '—' }}</td>
                             <td class="py-2 px-4">
                                 {{ $rental->vehicle->plate_number ?? '—' }}

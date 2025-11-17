@@ -7,9 +7,9 @@
     @if($payments->count() === 0)
         <div class="p-4 rounded bg-yellow-50 text-yellow-800">No payments found.</div>
     @else
-        <div class="overflow-x-auto bg-white dark:bg-[#161615] rounded shadow">
+        <div class="overflow-x-auto bg-white rounded shadow">
             <table class="min-w-full text-left">
-                <thead class="text-sm text-gray-600 dark:text-gray-300 border-b">
+                <thead class="text-sm text-gray-600 border-b">
                 <tr>
                     <th class="px-4 py-3">ID</th>
                     <th class="px-4 py-3">Driver</th>

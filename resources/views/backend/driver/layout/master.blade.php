@@ -9,12 +9,12 @@
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
 </head>
-<body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-gray-800 dark:text-gray-100">
+<body class="bg-[#FDFDFC] text-gray-800">
 
 {{-- Top Navigation --}}
 {{-- FleetFlow Driver Navigation --}}
 {{-- FleetFlow Driver Navigation --}}
-<nav class="bg-[#ffffff] dark:bg-[#1a1a1a] border-b border-gray-200 dark:border-[#333] shadow-sm sticky top-0 z-50">
+<nav class="bg-[#ffffff] border-b border-gray-200 shadow-sm sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-4 py-3">
 
         {{-- Brand --}}
@@ -23,7 +23,7 @@
         </a>
 
         {{-- Navigation Links --}}
-        <ul class="flex flex-wrap items-center space-x-6 font-medium text-gray-800 dark:text-gray-100">
+        <ul class="flex flex-wrap items-center space-x-6 font-medium text-gray-800">
 
             {{-- Dashboard --}}
             <li>

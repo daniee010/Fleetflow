@@ -13,9 +13,9 @@
     @if($vehicles->count() === 0)
         <div class="p-4 bg-yellow-50 text-yellow-800 rounded">No vehicles found.</div>
     @else
-        <div class="overflow-x-auto bg-white dark:bg-[#161615] rounded shadow">
+        <div class="overflow-x-auto bg-white rounded shadow">
             <table class="min-w-full text-sm text-left">
-                <thead class="border-b text-gray-600 dark:text-gray-300">
+                <thead class="border-b text-gray-600">
                 <tr>
                     <th class="py-2 px-3">Vehicle</th>
                     <th class="py-2 px-3">Year</th>
@@ -30,7 +30,7 @@
                     @php
                         $status = strtolower($v->status);
                     @endphp
-                    <tr class="border-b hover:bg-gray-50/70 dark:hover:bg-[#1a1a1a]">
+                    <tr class="border-b hover:bg-gray-50/70">
                         {{-- Vehicle --}}
                         <td class="py-2 px-3">
                             <div class="font-semibold">

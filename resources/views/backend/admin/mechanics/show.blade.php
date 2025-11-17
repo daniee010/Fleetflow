@@ -6,16 +6,16 @@
         {{ optional($mechanic->user)->name ?? 'Mechanic #'.$mechanic->id }}
     </h1>
 
-    <div class="bg-white dark:bg-[#161615] rounded-lg p-5 shadow mb-6">
+    <div class="bg-white rounded-lg p-5 shadow mb-6">
         <div>Email: {{ optional($mechanic->user)->email ?? '—' }}</div>
         <div>Phone: {{ $mechanic->phone ?? '—' }}</div>
         <div>Specialization: <strong>{{ $mechanic->specialization }}</strong></div>
     </div>
 
     <h2 class="text-xl font-semibold mb-3">Assigned Maintenances</h2>
-    <div class="overflow-x-auto bg-white dark:bg-[#161615] rounded-lg shadow">
+    <div class="overflow-x-auto bg-white rounded-lg shadow">
         <table class="min-w-full text-left">
-            <thead class="text-sm uppercase text-gray-500 dark:text-gray-300">
+            <thead class="text-sm uppercase text-gray-500">
             <tr>
                 <th class="px-4 py-3">#</th>
                 <th class="px-4 py-3">Vehicle</th>
@@ -24,7 +24,7 @@
                 <th class="px-4 py-3">Cost</th>
             </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+            <tbody class="divide-y divide-gray-100">
             @forelse($mechanic->maintenances as $m)
                 <tr class="text-sm">
                     <td class="px-4 py-3">{{ $m->id }}</td>

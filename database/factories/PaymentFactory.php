@@ -18,7 +18,7 @@ class PaymentFactory extends Factory
             'rental_id'    => null, // set via state
             'amount'       => $this->faker->numberBetween(50, 1000),
             'payment_date' => $this->faker->dateTimeBetween('-6 months', 'now'),
-            'payment_type' => $this->faker->randomElement(['rental','contracts']),
+            'payment_type' => $this->faker->randomElement(['rental','contracts','sales']),
             'notes'        => $this->faker->optional()->sentence(),
         ];
     }

@@ -13,7 +13,7 @@
     @endif
 
     <form method="POST" action="{{ route('admin.expenses.update', $expense) }}"
-          class="grid md:grid-cols-2 gap-6 bg-white dark:bg-[#161615] p-6 rounded-lg shadow">
+          class="grid md:grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow">
         @csrf
         @method('PATCH')
 

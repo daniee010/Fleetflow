@@ -22,7 +22,7 @@
 
     <div class="grid md:grid-cols-2 gap-6">
         {{-- Basic info --}}
-        <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+        <div class="bg-white rounded-lg shadow p-4">
             <h2 class="text-sm font-semibold text-gray-500 mb-2">Vehicle Info</h2>
             <div class="text-sm space-y-1">
                 <div><span class="font-semibold">Plate:</span> {{ $vehicle->plate_number }}</div>
@@ -34,7 +34,7 @@
         </div>
 
         {{-- Status / scheme / rate --}}
-        <div class="bg-white dark:bg-[#161615] rounded-lg shadow p-4">
+        <div class="bg-white rounded-lg shadow p-4">
             <h2 class="text-sm font-semibold text-gray-500 mb-2">Usage</h2>
 
             @php $status = strtolower($vehicle->status); @endphp

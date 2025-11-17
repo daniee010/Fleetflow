@@ -6,7 +6,7 @@
     <div class="max-w-6xl mx-auto space-y-10">
 
         {{-- Customer form --}}
-        <section class="bg-white dark:bg-[#161615] rounded-lg shadow p-6">
+        <section class="bg-white rounded-lg shadow p-6">
             <h1 class="text-2xl font-bold mb-4">Edit Customer</h1>
 
             <form method="POST" action="{{ route('admin.customers.update', $customer) }}" class="grid sm:grid-cols-2 gap-4">
@@ -39,12 +39,12 @@
         </section>
 
         {{-- Rental history --}}
-        <section class="bg-white dark:bg-[#161615] rounded-lg shadow p-6">
+        <section class="bg-white rounded-lg shadow p-6">
             <h2 class="text-xl font-bold mb-4">Rental History</h2>
 
             <div class="overflow-x-auto">
                 <table class="min-w-full text-left text-sm">
-                    <thead class="text-gray-600 dark:text-gray-300">
+                    <thead class="text-gray-600">
                     <tr>
                         <th class="p-2">Vehicle</th>
                         <th class="p-2">Start</th>
@@ -54,7 +54,7 @@
                         <th class="p-2"></th>
                     </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-200 dark:divide-[#2b2b2b]">
+                    <tbody class="divide-y divide-gray-200">
                     @foreach($customer->rentals as $rental)
                         <tr>
                             <td class="p-2">
@@ -72,7 +72,7 @@
                                             <option value="{{ $s }}" @selected($rental->status === $s)>{{ ucfirst($s) }}</option>
                                         @endforeach
                                     </select>
-                                    <button class="px-3 py-1 rounded bg-gray-200 dark:bg-[#2b2b2b]">Save</button>
+                                    <button class="px-3 py-1 rounded bg-gray-200">Save</button>
                                 </form>
                             </td>
                             <td class="p-2">

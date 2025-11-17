@@ -12,7 +12,7 @@
     {{-- Filter Buttons --}}
     <div class="mb-4 space-x-4">
         <a href="{{ route('admin.drivers.index') }}"
-           class="underline text-sm {{ request('scheme') ? 'text-gray-500' : 'text-black dark:text-white' }}">
+           class="underline text-sm {{ request('scheme') ? 'text-gray-500' : 'text-black' }}">
             All
         </a>
 
@@ -36,9 +36,9 @@
     @if($drivers->count() === 0)
         <div class="p-4 bg-yellow-50 text-yellow-800 rounded">No drivers found.</div>
     @else
-        <div class="overflow-x-auto bg-white dark:bg-[#161615] rounded shadow">
+        <div class="overflow-x-auto bg-white rounded shadow">
             <table class="min-w-full text-sm text-left">
-                <thead class="border-b text-gray-600 dark:text-gray-300">
+                <thead class="border-b text-gray-600">
                 <tr>
                     <th class="px-4 py-3">Driver</th>
                     <th class="px-4 py-3">Contact</th>
@@ -50,7 +50,7 @@
                 </tr>
                 </thead>
 
-                <tbody class="divide-y divide-gray-100 dark:divide-[#2a2a2a]">
+                <tbody class="divide-y divide-gray-100">
                 @foreach($drivers as $d)
                     <tr>
                         <td class="px-4 py-3">

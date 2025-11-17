@@ -15,7 +15,7 @@
 
     {{-- Top summary card --}}
     <div class="grid md:grid-cols-3 gap-4 mb-6">
-        <div class="bg-white dark:bg-[#161615] rounded shadow p-4">
+        <div class="bg-white rounded shadow p-4">
             <h2 class="text-sm font-semibold text-gray-500 mb-2">Driver</h2>
             <div class="text-lg font-semibold">
                 {{ $contract->driver->name ?? 'Driver #'.$contract->driver_id }}
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <div class="bg-white dark:bg-[#161615] rounded shadow p-4">
+        <div class="bg-white rounded shadow p-4">
             <h2 class="text-sm font-semibold text-gray-500 mb-2">Vehicle</h2>
             <div class="text-lg font-semibold">
                 {{ $contract->vehicle->plate_number ?? 'Vehicle #'.$contract->vehicle_id }}
@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <div class="bg-white dark:bg-[#161615] rounded shadow p-4">
+        <div class="bg-white rounded shadow p-4">
             <h2 class="text-sm font-semibold text-gray-500 mb-2">Contract</h2>
             @php
                 $total   = $contract->total_amount;
@@ -67,7 +67,7 @@
     </div>
 
     {{-- Dates --}}
-    <div class="bg-white dark:bg-[#161615] rounded shadow p-4 mb-6 text-sm">
+    <div class="bg-white rounded shadow p-4 mb-6 text-sm">
         <div>Start date: <strong>{{ $contract->start_date }}</strong></div>
         <div>End date: <strong>{{ $contract->end_date ?? '—' }}</strong></div>
     </div>
@@ -82,14 +82,14 @@
     </div>
 
     {{-- Payments table --}}
-    <div class="bg-white dark:bg-[#161615] rounded shadow">
+    <div class="bg-white rounded shadow">
         <div class="border-b px-4 py-3 font-semibold">
             Payment History
         </div>
 
         <div class="overflow-x-auto">
             <table class="min-w-full text-sm text-left">
-                <thead class="border-b text-gray-600 dark:text-gray-300">
+                <thead class="border-b text-gray-600">
                 <tr>
                     <th class="px-4 py-2">Date</th>
                     <th class="px-4 py-2">Amount</th>
@@ -97,7 +97,7 @@
                     <th class="px-4 py-2">Notes</th>
                 </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100 dark:divide-[#2a2a2a]">
+                <tbody class="divide-y divide-gray-100">
                 @forelse($contract->payments as $p)
                     <tr>
                         <td class="px-4 py-2">

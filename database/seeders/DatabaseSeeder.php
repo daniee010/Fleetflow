@@ -75,10 +75,16 @@ class DatabaseSeeder extends Seeder
                 'driver_id'    => Arr::random($driverIds), // remove if not desired
                 // you can also set payment_type here if you want a mix:
                 // 'payment_type' => Arr::random(['rental','contracts']),
+                'payment_type' => Arr::random(['rental', 'contract', 'sales']),
             ])
             ->create();
 
         $this->call(MechanicLinkSeeder::class);
+
+        $this->call([
+            AdminUserSeeder::class,
+
+        ]);
 
     }
 }
