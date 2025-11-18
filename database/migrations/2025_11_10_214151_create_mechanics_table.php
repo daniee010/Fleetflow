@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('maintenance', function (Blueprint $table) {
+        Schema::table('maintenances', function (Blueprint $table) {
             $table->foreignId('mechanic_id')
                 ->nullable()
                 ->after('vehicle_id')
