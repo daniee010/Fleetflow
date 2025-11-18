@@ -1,61 +1,116 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# FleetFlow – Fleet, Rentals & Driver Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A complete Laravel-based fleet management platform for transport operators in Africa.
 
-## About Laravel
+## Description
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Transport operators in Africa often struggle because they do not have a single digital system to manage vehicles, drivers, and finances. This project provides an integrated platform that centralizes fleet tracking, driver performance monitoring, and financial management. By digitizing processes such as maintenance scheduling, income and expense tracking, and "work-and-pay" contract management, the system eliminates inefficiencies caused by manual or fragmented workflows. It helps vehicle owners clearly monitor driver activity, predict payment completion for work-and-pay agreements, and determine whether their operations are financially sustainable.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Technologies Used
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Laravel 12
+- PHP 8.2
+- MySQL
+- Tailwind CSS
 
-## Learning Laravel
+## Database Design
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Tables and Relationships
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**1. Users** - Stores all system users, including admins, drivers, mechanics, and customers
+- Primary Key: id
+- Relationships: 
+  - Linked to drivers (via user_id)
+  - Linked to mechanics (via user_id)
+  - Linked to customers indirectly through roles
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**2. Vehicles** - Holds information about all vehicles in the fleet.
+- Primary Key: id
+- Relationships:
+  - Linked to drivers (vehicles.id → drivers.vehicle_id)
+  - Linked to rentals (vehicles.id → rentals.vehicle_id)
+  - Linked to maintenances (vehicles.id → maintenances.vehicle_id)
+  - Linked to expenses (vehicles.id → expenses.vehicle_id)
+  - Linked to work_and_pay_contracts (vehicles.id → work_and_pay_contracts.vehicle_id)
 
-## Laravel Sponsors
+**3. Drivers** - Represents drivers in the system.
+- Primary Key: id
+- Relationships:
+  - Belongs to a user (drivers.user_id)
+  - Assigned to a vehicle (drivers.vehicle_id)
+  - Linked to payments (drivers.id → payments.driver_id)
+  - Linked to work_and_pay_contracts (drivers.id → work_and_pay_contracts.driver_id)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+**4. Customers** - Contains customer details for vehicle rentals.
+- Primary Key: id
+- Relationships:
+  - Linked to rentals (customers.id → rentals.customer_id)
 
-### Premium Partners
+**5. Rentals** - Stores all vehicle rental transactions.
+- Primary Key: id
+- Relationships:
+  - Belongs to a customer
+  - Assigned a vehicle
+  - Linked to payments (rentals.id → payments.rental_id)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+**6. Payments** - Tracks financial payments from drivers under both rentals and work-and-pay contracts.
+- Primary Key: id
+- Relationships:
+  - Linked to a driver
+  - Optionally linked to a rental
+- Supports two payment types:
+  - rental
+  - contract
 
-## Contributing
+**7. Work and Pay Contracts** - Manages work-and-pay agreements where drivers pay toward vehicle ownership.
+- Primary Key: id
+- Relationships:
+  - Belongs to a driver
+  - Linked to a vehicle
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**8. Maintenances** - Stores vehicle maintenance records.
+- Primary Key: id
+- Relationships:
+  - Linked to vehicles
+  - Linked to mechanics
+  - Linked to expenses (each maintenance can generate partner expenses)
 
-## Code of Conduct
+**9. Mechanics** - Stores mechanic details.
+- Primary Key: id
+- Relationships:
+  - Linked to users
+  - Linked to maintenances via mechanic_id
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**10. Expenses** - Tracks all expenses related to vehicles or maintenance activities.
+- Primary Key: id
+- Relationships:
+  - Linked to vehicles
+  - Linked to maintenances
 
-## Security Vulnerabilities
+### ERD Diagram
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![fleetflow-erd](/public/assets/fleetflow-erd.png "Fleetflow ERD")
 
-## License
+## Features
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+FleetFlow is a complete Fleet Management System built with Laravel, allowing transport companies to manage:
+
+- **Vehicle Management** - Add/edit/delete vehicles with status tracking (available, maintenance, rented, sales, contract)
+- **Driver Management** - Profile management, contact info, vehicle assignment with scheme types (sales_only, work_and_pay, mixed)
+- **Work & Pay Contracts** - Create contracts with weekly payments, track progress with balance and progress bars
+- **Rentals** - Customer and vehicle rental management with duration, cost, and status tracking
+- **Payments System** - Three payment types: rental (customer), contract (driver), sales (driver)
+- **Maintenance** - Mechanics management, cost tracking, and vehicle condition monitoring
+- **Expenses** - Track repairs, fuel, and operating costs
+- **Reports Dashboard** - Comprehensive analytics including rental revenue, Work & Pay revenue, sales revenue, expenses summary, net profit, and recent payments
+
+## Setup Instructions
+
+```bash
+git clone https://github.com/2025-Fall-ITE-5330-RNA/project-phases-team-1.git
+cd project-name
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve
