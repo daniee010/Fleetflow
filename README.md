@@ -108,7 +108,9 @@ FleetFlow is a complete Fleet Management System built with Laravel, allowing tra
 
 ```bash
 git clone https://github.com/2025-Fall-ITE-5330-RNA/project-phases-team-1.git
-cd project-name
+cd project-phases-team-1
+npm install
+npm run dev
 composer install
 cp .env.example .env
 php artisan key:generate
