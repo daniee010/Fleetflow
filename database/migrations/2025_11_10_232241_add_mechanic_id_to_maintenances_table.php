@@ -9,43 +9,50 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('maintenances', function (Blueprint $table) {
-            // Check if column already exists before adding
+            // Check if column exists before adding
             if (!Schema::hasColumn('maintenances', 'mechanic_id')) {
                 $table->foreignId('mechanic_id')
                     ->nullable()
-                    ->after('vehicle_id');
-            }
-
-            // If column exists but no foreign key, add the constraint
-            if (Schema::hasColumn('maintenances', 'mechanic_id')) {
-                // Check if foreign key doesn't exist
-                $sm = Schema::getConnection()->getDoctrineSchemaManager();
-                $indexes = $sm->listTableIndexes('maintenances');
-                $hasForeignKey = false;
-
-                foreach ($indexes as $index) {
-                    if ($index->isForeignKey() && in_array('mechanic_id', $index->getColumns())) {
-                        $hasForeignKey = true;
-                        break;
-                    }
-                }
-
-                if (!$hasForeignKey) {
-                    $table->foreign('mechanic_id')
-                        ->references('id')
-                        ->on('mechanics')
-                        ->nullOnDelete();
-                }
+                    ->after('vehicle_id')
+                    ->constrained('mechanics')
+                    ->nullOnDelete();
+            } else {
+                // Column exists, just add the foreign key constraint if missing
+                $this->addForeignKeyIfMissing();
             }
         });
     }
 
+    private function addForeignKeyIfMissing(): void
+    {
+        // Use Laravel's schema methods to check for foreign key
+        $foreignKeys = Schema::getConnection()
+            ->getDoctrineSchemaManager()
+            ->listTableForeignKeys('maintenances');
+
+        $hasMechanicForeignKey = false;
+        foreach ($foreignKeys as $foreignKey) {
+            if (in_array('mechanic_id', $foreignKey->getColumns())) {
+                $hasMechanicForeignKey = true;
+                break;
+            }
+        }
+
+        if (!$hasMechanicForeignKey) {
+            Schema::table('maintenances', function (Blueprint $table) {
+                $table->foreign('mechanic_id')
+                    ->references('id')
+                    ->on('mechanics')
+                    ->nullOnDelete();
+            });
+        }
+    }
+
     public function down(): void
     {
-        // Don't drop the column in down() since it might contain data
         Schema::table('maintenances', function (Blueprint $table) {
             $table->dropForeign(['mechanic_id']);
-            // Note: We're not dropping the column to avoid data loss
+            // Don't drop the column to avoid data loss
         });
     }
 };
