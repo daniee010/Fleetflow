@@ -12,6 +12,7 @@
 <body class="bg-[#FDFDFC] text-gray-800">
 
 {{-- FleetFlow Admin Navigation --}}
+@auth
 <nav class="bg-[#ffffff] border-b border-gray-200 shadow-sm sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-4 py-3">
 
@@ -224,6 +225,7 @@
         </div>
     </div>
 </nav>
+@endauth
 
 
 {{-- Main Content --}}

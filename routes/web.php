@@ -28,44 +28,26 @@ use App\Models\{
     User
 };
 
-/*
-|--------------------------------------------------------------------------
-| Public Landing Route
-|--------------------------------------------------------------------------
-*/
 
-// ❌ Remove the old welcome() closure and use your real frontend home:
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-/*
-|--------------------------------------------------------------------------
-| Authenticated Dashboard Redirect
-|--------------------------------------------------------------------------
-*/
 
-// When Laravel/Breeze redirects to /dashboard after login,
-// send ADMIN users to the admin dashboard.
+
+
 Route::get('/dashboard', function () {
     // you can add role logic here later if needed
     return redirect()->route('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-/*
-|--------------------------------------------------------------------------
-| Profile Routes (from Breeze)
-|--------------------------------------------------------------------------
-*/
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-/*
-|--------------------------------------------------------------------------
-| Admin Routes
-|--------------------------------------------------------------------------
-*/
+
 Route::prefix('admin')
     ->name('admin.')
     ->middleware(['auth', 'admin'])
@@ -136,38 +118,24 @@ Route::prefix('admin')
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
     });
 
-/*
-|--------------------------------------------------------------------------
-| Driver Routes
-|--------------------------------------------------------------------------
-*/
+
 Route::prefix('driver')->name('driver.')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\DriversController::class, 'index'])
         ->middleware('auth')
         ->name('dashboard');
 });
 
-/*
-|--------------------------------------------------------------------------
-| Frontend (Public) Pages (NOT login/register anymore)
-|--------------------------------------------------------------------------
-*/
+
 Route::controller(HomeController::class)->group(function () {
     // '/' is already defined above as HomeController@index
     Route::get('/about', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
     Route::post('/contact', 'submitContact')->name('contact.submit');
 
-    // ❌ REMOVE these because Breeze (auth.php) handles /login and /register:
-    // Route::get('/login', 'login')->name('login');
-    // Route::get('/register', 'register')->name('register');
+
 });
 
-/*
-|--------------------------------------------------------------------------
-| Diagnostic / Developer Routes
-|--------------------------------------------------------------------------
-*/
+
 Route::get('/db-health', function () {
     return [
         'database'  => DB::getDatabaseName(),
@@ -193,9 +161,5 @@ Route::get('/diag', function () {
     ];
 });
 
-/*
-|--------------------------------------------------------------------------
-| Breeze Auth Routes (login, register, password reset, etc.)
-|--------------------------------------------------------------------------
-*/
+
 require __DIR__.'/auth.php';

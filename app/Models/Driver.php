@@ -9,7 +9,7 @@ class Driver extends Model
 {
     use HasFactory;
 
-    // Scheme type constants – easier to reuse in code
+
     public const SCHEME_SALES_ONLY = 'sales_only';
     public const SCHEME_WORK_AND_PAY = 'work_and_pay';
     public const SCHEME_MIXED = 'mixed';

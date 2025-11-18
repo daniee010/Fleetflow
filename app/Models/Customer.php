@@ -21,10 +21,10 @@ class Customer extends Model
         return $this->hasManyThrough(
             Payment::class,
             Rental::class,
-            'customer_id', // rentals.customer_id
-            'rental_id',   // payments.rental_id
-            'id',          // customers.id
-            'id'           // rentals.id
+            'customer_id',
+            'rental_id',
+            'id',
+            'id'
         );
     }
 }
